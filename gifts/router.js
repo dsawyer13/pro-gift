@@ -1,9 +1,12 @@
 'use strict';
 
 const express = require('express');
-const morgan = require('morgan');
-const {Gift} = require('./models');
+const bodyParser = require('body-parser')
+
+const { Gift } = require('./models');
+
 const router = express.Router();
+
 const jsonParser = bodyParser.json();
 
 router.get("/", (req, res) => {
@@ -20,7 +23,6 @@ router.post("/", (req, res) => {
     console.error(message);
     return res.status(400).send(message);
     }
-  }
   const item = Gift.create(req.body.giftName, req.body.giftLink || '', req.body.giftPrice || '');
   res.status(201).json(item);
 });
@@ -56,4 +58,4 @@ router.put("/:id", (req, res) => {
   res.status(204).end();
 })
 
-module.exports = router;
+module.exports = {router};

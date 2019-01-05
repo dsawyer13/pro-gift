@@ -1,8 +1,9 @@
 'use strict';
+
 const {Gift} = require('./models');
 const {router} = require('./router');
 
-MOCK_GIFT_DATA = {
+const MOCK_GIFT_DATA = {
   "gifts": [
     {
       id: "1111111",
@@ -39,4 +40,4 @@ function getAndDisplayGifts() {
 
 
 
-module.exports = {Resource, router};
+module.exports = {Gift, router};
