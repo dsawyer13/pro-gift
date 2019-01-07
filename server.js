@@ -34,11 +34,11 @@ app.use('/gifts', giftsRouter);
 // app.use('/users', usersRouter);
 // app.use('/auth', authRouter);
 
-const jwtAuth = passport.authenticate('jwt', {session: false});
-
-app.use('*', (req, res) => {
-  return res.status(404).json({message: 'Not Found'});
-});
+// const jwtAuth = passport.authenticate('jwt', {session: false});
+//
+// app.use('*', (req, res) => {
+//   return res.status(404).json({message: 'Not Found'});
+// });
 
 let server;
 
