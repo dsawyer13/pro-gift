@@ -31,7 +31,7 @@ const app = express();
 // passport.use(jwtStrategy);
 
 app.use('/gifts', giftsRouter);
-// app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 // app.use('/auth', authRouter);
 
 // const jwtAuth = passport.authenticate('jwt', {session: false});
