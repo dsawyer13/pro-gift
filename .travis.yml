@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: IwNXkMg5vq/+fb3g4AAmM2MheO/5TUAm4QPVAB8MyUrzR3HwVizW8rYY/j+KMMfP4d1uKlTKiNMjMwBYmjmI61MKd7tDE9w1oc8GGIP0zRGxYPxuczsUm4K8ZdzG1YuD/4gia3ImaQHxFYp0MfvnJNrBWr46cm/fQxlSsP/WDhzj4iKMrP6HAojckSo+Ur25btPGzc2knBGl8Z0/SW5ZxulsrHSY2Zr0/uqr+8bxb4V4s7dR97W0F/BonxCLjqdSnTej0nYhyOnDZP3NzQvqUHRpORdx2h4SYVwBvR3IARWlNV51/5BEsXFAH+BjSDxMVsDsd96nIug76QZJBZKnaNpHyGjfN6iXA4wtG/c6QjLz+KIgwE26otaqUXyMxz6fNdmQ5sfES9yedXkneHB3BAvYs0PAuZTYZ78ncdw9mKUm6SM/2M/OB8Gn7JJvjsCaP6Yvc/HS5GG8LJ8m+fAulLZh/U1DFtVJvWmWKhZ9tjdw2jRoJH9EqWHZshSy1T6NE7joeMeRdGkMpW78vnmQqghdHCT5f4z4TRhDtwXTGMA7CJ0oA2gMTJOsjjf978UC073LFQgzXleSorfYrm5jy31w3V8ICYOqoB+C/0Ifaju6eMGGsc3VhSCYXIe16Nd1pXeEGCbDhdpQ0LJl3aYuH3eSwwfXhuuh+I0QpAj5bTo=
+  app: ancient-wave-22542
+  on:
+    repo: dsawyer13/gift-registry
