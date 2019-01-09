@@ -11,7 +11,7 @@ const jsonParser = bodyParser.json();
 
 router.get("/", (req, res) => {
   return Gift.find()
-    .then(gifts => res.json(gifts.map => gifts.serialize))
+    .then(gifts => res.json(gifts.map(gifts => gifts.serialize())))
 });
 
 router.post("/", (req, res) => {

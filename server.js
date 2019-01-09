@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 
 const {router: giftsRouter} = require('./gifts');
-const {router: usersRouter} = require('./users');
+// const {router: usersRouter} = require('./users');
 // const {router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;
@@ -31,7 +31,7 @@ const app = express();
 // passport.use(jwtStrategy);
 
 app.use('/gifts', giftsRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 // app.use('/auth', authRouter);
 
 // const jwtAuth = passport.authenticate('jwt', {session: false});
