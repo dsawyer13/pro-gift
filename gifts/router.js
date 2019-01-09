@@ -10,9 +10,8 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 router.get("/", (req, res) => {
-  //since this code gets the json objects for our list of gifts
-  //the client should be able to call res.body.giftName etc.
-  res.json(Gift.get());
+  return Gift.find()
+    .then(gifts => res.json(gifts.map => gifts.serialize))
 });
 
 router.post("/", (req, res) => {

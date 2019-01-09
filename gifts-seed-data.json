@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5af50c84c082f1e92f834209"},"giftName":"Sea Monkeys","giftLink":"https://www.amazon.com/Schylling-Sea-Monkeys-Ocean-Zoo/dp/B001CBZXEE","giftPrice":"$15"}
+{"_id":{"$oid":"5af50c84c082f1e92f83420a"},"giftName":"Pet Rock","giftLink":"https://www.amazon.com/Pet-Rock-Novelty-Broken-Walking/dp/B00I306JW2/ref=sr_1_1?s=toys-and-games&ie=UTF8&qid=1546641955&sr=1-1&keywords=pet+rock","giftPrice":"$19"}
+{"_id":{"$oid":"5af50c84c082f1e92f83420b"},"giftName":"SpongeBob Chia Pet","giftLink":"https://www.amazon.com/Chia-SpongeBob-Handmade-Decorative-Planter/dp/B002R0FQB4/ref=sr_1_2?s=toys-and-games&ie=UTF8&qid=1546642146&sr=1-2&keywords=chia+pet","giftPrice":"$20"}
