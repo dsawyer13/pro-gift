@@ -7,8 +7,6 @@ const { Gift } = require('./models');
 const router = express.Router();
 
 
-<<<<<<< HEAD:gifts/router.js
-
 router.get('/', (req, res) => {
   Gift.find()
  .then(gifts => {
@@ -26,11 +24,6 @@ router.get('/', (req, res) => {
    console.log(err);
    res.status(500).json({message: "Internal server error"});
  });
-=======
-router.get("/", (req, res) => {
-  return Gift.find()
-    .then(gifts => res.json(gifts.map(gifts => gifts.serialize())))
->>>>>>> d222f24eed7058a9de92e35174431b85cf8f5971:gifts/giftsRouter.js
 });
 
 router.post("/", (req, res) => {
