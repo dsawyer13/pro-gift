@@ -6,7 +6,11 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 
+<<<<<<< HEAD
 const {router: giftsRouter} = require('./gifts/router.js');
+=======
+const {router: giftsRouter} = require('./gifts');
+>>>>>>> d222f24eed7058a9de92e35174431b85cf8f5971
 // const {router: usersRouter} = require('./users');
 // const {router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
