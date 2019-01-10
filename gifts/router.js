@@ -1,18 +1,30 @@
 'use strict';
 
 const express = require('express');
-const bodyParser = require('body-parser')
 
 const { Gift } = require('./models');
 
 const router = express.Router();
 
-const jsonParser = bodyParser.json();
 
-router.get("/", (req, res) => {
-  //since this code gets the json objects for our list of gifts
-  //the client should be able to call res.body.giftName etc.
-  res.json(Gift.get());
+
+router.get('/', (req, res) => {
+  Gift.find()
+ .then(gifts => {
+   res.json(
+     gifts.map(gift => {
+       return {
+         id: gift._id,
+         giftName: gift.giftName,
+         giftLink: gift.giftLink,
+         giftPrice: gift.giftPrice
+       };
+     }));
+ })
+ .catch(err => {
+   console.log(err);
+   res.status(500).json({message: "Internal server error"});
+ });
 });
 
 router.post("/", (req, res) => {

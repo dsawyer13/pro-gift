@@ -15,6 +15,7 @@ describe('index page', function() {
       .get("/gifts")
       .then(function(res) {
         expect(res).to.have.status(200);
+        done()
       });
   });
 });
