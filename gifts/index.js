@@ -2,10 +2,7 @@
 //
 // const {Gift} = require('./models');
 // const {router} = require('./router');
-<<<<<<< HEAD
 
-=======
-//
 // const MOCK_GIFT_DATA = {
 //   "gifts": [
 //     {
@@ -28,8 +25,7 @@
 //     }
 //   ]
 // }
->>>>>>> d222f24eed7058a9de92e35174431b85cf8f5971
-//
+
 // const serverBase = "//localhost:8080";
 // const GIFTS_URL = serverBase + "/gifts";
 //
