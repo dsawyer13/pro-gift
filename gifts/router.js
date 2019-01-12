@@ -8,23 +8,12 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
+  res.send("Hello World")
   Gift.find()
- .then(gifts => {
-   res.json(
-     gifts.map(gift => {
-       return {
-         id: gift._id,
-         giftName: gift.giftName,
-         giftLink: gift.giftLink,
-         giftPrice: gift.giftPrice
-       };
-     }));
- })
- .catch(err => {
-   console.log(err);
-   res.status(500).json({message: "Internal server error"});
- });
-});
+    .then(users => res.json(users.map(user => user.serialize())))
+    .catch(err => res.status(500).json({message: 'Internal server error'}));
+  });
+
 
 router.post("/", (req, res) => {
   const requiredFields = ["giftName"];

@@ -1,4 +1,4 @@
-'user strict';
+'use strict';
 
 require('dotenv').config();
 const express = require('express');
@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 
 
-const {router: giftsRouter} = require('./gifts/router.js');
+const {router: giftsRouter} = require('./gifts');
 
 // const {router: usersRouter} = require('./users');
 // const {router: authRouter, localStrategy, jwtStrategy } = require('./auth');
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 // passport.use(localStrategy);
 // passport.use(jwtStrategy);
 
-app.use('/gifts', giftsRouter);
+app.use('/api/gifts', giftsRouter);
 // app.use('/users', usersRouter);
 // app.use('/auth', authRouter);
 
