@@ -11,8 +11,6 @@ const giftSchema = mongoose.Schema({
   giftPrice: String
 });
 
-
-
 giftSchema.methods.serialize = function() {
   return {
     id: this._id,
@@ -23,9 +21,6 @@ giftSchema.methods.serialize = function() {
 };
 
 const Gift = mongoose.model('Gift', giftSchema);
-
-
-
 
 
 module.exports = {Gift};

@@ -8,54 +8,64 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  res.send("Hello World")
+
   Gift.find()
-    .then(users => res.json(users.map(user => user.serialize())))
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
-  });
+    .then(gifts => {
+      res.json(gifts.map(gift => gift.serialize()));
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal Server Error'});
+    });
+});
 
 
 router.post("/", (req, res) => {
-  const requiredFields = ["giftName"];
-  const field = requiredFields[0];
-  if(!(field in req.body)) {
-    const message = `Missing Gift Name in request body`;
-    console.error(message);
-    return res.status(400).send(message);
-    }
-  const item = Gift.create(req.body.giftName, req.body.giftLink || '', req.body.giftPrice || '');
-  res.status(201).json(item);
+
+  Gift
+    .create({
+      giftName: req.body.giftName,
+      giftLink: req.body.giftLink,
+      giftPrice: req.body.giftPrice
+    })
+    .then(gift => res.status(201).json(gift.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal Server Error'});
+    });
 });
+
 
 router.delete("/:id", (req, res) => {
-  Gift.delete(req.params.id);
-  console.log(`Deleted gift with id: \`${req.params.ID}\``);
-  res.status(204).end();
+
+  Gift
+    .findByIdAndRemove(req.params.id)
+    .then(() => {
+      console.log(`Deleted blog post with id \`${req.params.id}\``);
+      res.status(204).end()
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal Server Error'});
+    });
 });
 
+
 router.put("/:id", (req, res) => {
-  //find out if put, patch, or both is appropriate for updating parts of records
-  const requiredFields = ["giftName", "giftLink", "giftPrice", "id"];
-  for (let i = 0;i < requiredFields.length;i++) {
-    const field = requiredFields[i];
-    if (!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body.`;
-      console.error(message)
+
+  const updated = {};
+  const updateableFields = ['giftName', 'giftLink', 'giftPrice'];
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      updated[field] = req.body[field];
     }
-  }
-  if (req.params.id !== req.body) {
-    const message = `Request path id (${req.params.id}) and request body id (${req.body.id}) must match`;
-    console.error(message);
-    return res.status(400).send(message);
-  }
-  console.log(`Updating Gift with id: \`${req.params.id}\``);
-  Gift.update({
-    id: req.params.id,
-    giftName: req.params.giftName,
-    giftLink: req.body.giftLink,
-    giftPrice: req.body.giftPrice
   });
-  res.status(204).end();
-})
+
+  Gift
+    .findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
+    .then(updatedGift => res.status(204).end())
+    .catch(err => res.status(500).json({ message: 'Internal Server Error'}));
+});
+
 
 module.exports = {router};
