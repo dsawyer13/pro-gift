@@ -22,6 +22,16 @@ router.get('/', (req, res) => {
 
 router.post("/", (req, res) => {
 
+  const requiredFields = ['giftName', 'giftLink', 'giftPrice'];
+  for (let i = 0; i < requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
+
   Gift
     .create({
       giftName: req.body.giftName,
@@ -31,7 +41,7 @@ router.post("/", (req, res) => {
     .then(gift => res.status(201).json(gift.serialize()))
     .catch(err => {
       console.error(err);
-      res.status(500).json({message: 'Internal Server Error'});
+      res.status(500).json({error: 'Internal Server Error'});
     });
 });
 
@@ -52,7 +62,12 @@ router.delete("/:id", (req, res) => {
 
 
 router.put("/:id", (req, res) => {
-
+   if(!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+     res.status(400).json({
+       error: 'Request path id and request body id values must match'
+     });
+   }
+   
   const updated = {};
   const updateableFields = ['giftName', 'giftLink', 'giftPrice'];
   updateableFields.forEach(field => {
