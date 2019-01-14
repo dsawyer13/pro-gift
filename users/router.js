@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 
 const {User} = require('./models');
 
-const router = express.router();
+const router = express.Router();
+
+const jsonParser = bodyParser.json();
 
 router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['username', 'password'];
@@ -43,7 +45,7 @@ router.post('/', jsonParser, (req, res) => {
       code: 422,
       reason: 'ValidationError',
       message: 'Cannot start or end with whitespace',
-      location nonTrimmedField
+      location: nonTrimmedField
     });
   }
 
@@ -69,7 +71,7 @@ router.post('/', jsonParser, (req, res) => {
   );
 
   if (tooSmallField || tooLargeField) {
-    return.status(422).json({
+    return res.status(422).json({
       code: 422,
       reason: 'ValidationError',
       message: tooSmallField
@@ -98,7 +100,7 @@ router.post('/', jsonParser, (req, res) => {
         });
       }
 
-      return User hashPassword(password);
+      return User.hashPassword(password);
     })
     .then(hash => {
       return User.create({
