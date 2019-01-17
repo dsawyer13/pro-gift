@@ -63,7 +63,6 @@ describe('Gift Registry API resource', function() {
           res = _res;
           res.should.have.status(200);
           res.body.should.have.lengthOf.at.least(1);
-
           return Gift.count()
         })
         .then(count => {
