@@ -1,37 +1,41 @@
 {
   "name": "gift-registry",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha",
-    "start": "nodemon server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.2.1",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "mocha": "^5.2.0",
-    "mongoose": "^5.4.2",
-    "morgan": "^1.9.1",
-    "passport": "^0.4.0",
-    "uuid": "^3.3.2"
-  },
+  "description": "",
+  "main": "client.js",
   "directories": {
     "test": "test"
   },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chai-http": "^4.2.1",
+    "chai": "^4.2.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.2",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-jwt": "^4.0.0",
+    "uuid": "^3.3.2"
+  },
   "devDependencies": {
     "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dsawyer13/gift-registry.git"
   },
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/dsawyer13/gift-registry/issues"
   },
-  "homepage": "https://github.com/dsawyer13/gift-registry#readme",
-  "description": ""
+  "homepage": "https://github.com/dsawyer13/gift-registry#readme"
 }
