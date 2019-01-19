@@ -11,8 +11,8 @@ function createAccount() {
       method: 'POST',
       url: '/api/users',
       data: regData,
-      success: function(response){
-        console.log(response)
+      success: function(regData){
+        console.log(regData)
     }
   })
 }
