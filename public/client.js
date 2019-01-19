@@ -46,11 +46,10 @@
     }
 
     $.ajax({
-      url: '/api/users',
+      url: 'https://powerful-mountain-84317.herokuapp.com/api/users',
       method: 'POST',
       data: JSON.stringify(formData),
       contentType: 'application/json',
-      processData: false,
       success: function(data) {
         console.log(JSON.stringify(data));
       }
