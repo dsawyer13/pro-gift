@@ -3,67 +3,54 @@
 
 
 
-  // function createUser() {
-  //   $('.signup-form').on('submit', '.signup-submit', function(event) {
+  // function handleSignupSubmit() {
   //
-  //     event.preventDefault();
-  //
-  //     let formData = {
-  //       username: $('.username').val(),
-  //       password: $('.password').val(),
-  //       firstName: $('.firstName').val(),
-  //       lastName: $('.lastName').val()
-  //     };
-  //
-  //     $.ajax({
-  //       type: 'POST',
-  //       url: '/api/users',
-  //       data: JSON.stringify(formData),
-  //       dataType: 'json',
-  //       contentType: 'application/json',
-  //       success: function(data){
-  //         $('.test').html("<p>" +
-  //       data.username + "</p>");
-  //     },
-  //     error: function(e) {
-  //       alert("Error")
-  //       console.log("Error: ", e);
-  //     }
+  //   $('.signup-form').submit(function(e) {
+  //     e.preventDefault();
+  //     createAccount({
+  //       username: $(e.currentTarget).find('.username').val(),
+  //       password: $(e.currentTarget).find('.password').val(),
+  //       firstName: $(e.currentTarget).find('.firstName').val(),
+  //       lastName: $(e.currentTarget).find('.lastName').val()
+  //     });
   //   });
   // }
+  //
+  // function createAccount(userInfo) {
+  //
+  //   console.log(userInfo);
+  //
+  //   $.ajax({
+  //     method: 'POST',
+  //     url: '/api/users',
+  //     data: JSON.stringify(data),
+  //     success: function(data) {
+  //       console.log(data)
+  //     },
+  //     dataType: 'json',
+  //     contentType: 'application/json'
+  //   })
+  //   });)
+  // }
 
-  function handleSignupSubmit() {
+  const $form = $('.signup-form');
 
-    $('.signup-form').submit(function(e) {
-      e.preventDefault();
-      createAccount({
-        username: $(e.currentTarget).find('.username').val(),
-        password: $(e.currentTarget).find('.password').val(),
-        firstName: $(e.currentTarget).find('.firstName').val(),
-        lastName: $(e.currentTarget).find('.lastName').val()
-      });
-    });
-  }
+  $form.on('submit', submitHandler)
 
-  function createAccount(userInfo) {
-
-    console.log(userInfo);
+  function submitHandler (e) {
+    e.preventDefault()
 
     $.ajax({
-      method: 'POST',
       url: '/api/users',
-      data: JSON.stringify(data),
-      success: function(data) {
-        console.log(data)
-      },
-      dataType: 'json',
-      contentType: 'application/json'
+      type: 'POST',
+      data: $form.serialize()
     })
-    });)
+    .done(response => {
+      console.log(response)
+    })
   }
 
 $(function() {
-  handleSignupSubmit();
-  createAccount();
+  submitHandler()
 
 })
