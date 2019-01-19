@@ -10,16 +10,18 @@ $(document).ready(function() {
 
   function ajaxPost() {
 
-      let username = $('.uname').val();
-      let password = $('.pwd').val();
-      let firstName = $('.firstName').val();
-      let lastName = $('.lastName').val();
-      let formData = {'username': username, 'password': password, 'firstName': firstName, 'lastName': lastName};
+      let formData = {
+        'username': $('.username').val(),
+        'password': $('.password').val(),
+        'firstName': $('.firstName').val(),
+        'lastName': $('.lastName').val()
+      };
       $.ajax({
         type: 'POST',
         url: '/api/users',
         data: JSON.stringify(formData),
         dataType: 'json',
+        contenType: 'application/json',
         success: function(data){
           $('.test').html("<p>" +
         data.username + "</p>");
