@@ -36,18 +36,18 @@
   function submitHandler() {
     $('.signup-form').on('submit', '.signup-button', function(event) {
 
-    event.preventDefault();
+    //event.preventDefault();
 
     let formData = {
-      username: $(e.currentTarget).find('.username').val(),
-      password: $(e.currentTarget).find('.password').val(),
-      firstName: $(e.currentTarget).find('.firstName').val(),
-      lastName: $(e.currentTarget).find('.lastName').val()
+      username: $('.username').val(),
+      password: $('.password').val(),
+      firstName: $('.firstName').val(),
+      lastName: $('.lastName').val()
     }
 
     $.ajax({
       url: '/api/users',
-      type: 'POST',
+      method: 'POST',
       data: formData,
       contentType: 'application/json',
       processData: false,
