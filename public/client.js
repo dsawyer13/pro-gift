@@ -15,10 +15,9 @@ $(document).ready(function() {
       let firstName = $('.firstName').val();
       let lastName = $('.lastName').val();
       let formData = {'username': username, 'password': password, 'firstName': firstName, 'lastName': lastName};
-
       $.ajax({
         type: 'POST',
-        url: 'https://powerful-mountain-84317.herokuapp.com/api/users',
+        url: '/api/users',
         data: JSON.stringify(formData),
         dataType: 'json',
         success: function(data){
