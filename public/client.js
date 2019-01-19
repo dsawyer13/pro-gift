@@ -33,12 +33,9 @@
   //   });)
   // }
 
-  const $form = $('.signup-form');
-
-  $form.on('submit', submitHandler)
-
-  function submitHandler (e) {
-    e.preventDefault()
+  function submitHandler() {
+    $('.signup-form').on('submit', '.signup-button', function(event) {
+    event.preventDefault();
 
     $.ajax({
       url: '/api/users',
@@ -48,7 +45,9 @@
     .done(response => {
       console.log(response)
     })
-  }
+  })
+}
+
 
 $(function() {
   submitHandler()
