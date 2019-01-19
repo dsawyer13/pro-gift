@@ -36,10 +36,12 @@
   function submitHandler() {
     $('.signup-form').on('submit', '.signup-button', function(event) {
 
-    //event.preventDefault();
+    event.preventDefault();
+
+    const uname = $('.username').val();
 
     let formData = {
-      username: $('.username').val(),
+      username: uname,
       password: $('.password').val(),
       firstName: $('.firstName').val(),
       lastName: $('.lastName').val()
