@@ -39,10 +39,10 @@
     event.preventDefault();
 
     let formData = {
-      username: $('.username').val(),
-      password: $('.password').val(),
-      firstName: $('.firstName').val(),
-      lastName: $('.lastName').val()
+      username: $(e.currentTarget).find('.username').val(),
+      password: $(e.currentTarget).find('.password').val(),
+      firstName: $(e.currentTarget).find('.firstName').val(),
+      lastName: $(e.currentTarget).find('.lastName').val()
     }
 
     $.ajax({
