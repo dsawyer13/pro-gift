@@ -35,15 +35,25 @@
 
   function submitHandler() {
     $('.signup-form').on('submit', '.signup-button', function(event) {
+
     event.preventDefault();
+
+    let formData = {
+      username: $('.username').val(),
+      password: $('.password').val(),
+      firstName: $('.firstName').val(),
+      lastName: $('.lastName').val()
+    }
 
     $.ajax({
       url: '/api/users',
       type: 'POST',
-      data: $form.serialize()
-    })
-    .done(response => {
-      console.log(response)
+      data: JSON.stringify(formData),
+      contentType: 'application/json',
+      processData: false,
+      success: function(data) {
+        console.log(JSON.stringify(data));
+      }
     })
   })
 }
