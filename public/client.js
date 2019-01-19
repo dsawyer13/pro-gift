@@ -1,7 +1,7 @@
 'use strict';
 
 function createAccount() {
-  $('signup-submit').on('submit', function(event) {
+  $('.signup-form').on('submit', 'signup-button', function(event) {
     event.preventDefault();
 
     // let username = $('.uname').val();
