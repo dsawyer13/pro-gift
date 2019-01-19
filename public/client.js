@@ -18,7 +18,7 @@ $(document).ready(function() {
 
       $.ajax({
         type: 'POST',
-        url: window.location + '/api/users',
+        url: 'https://powerful-mountain-84317.herokuapp.com/api/users',
         data: JSON.stringify(formData),
         dataType: 'json',
         success: function(data){
