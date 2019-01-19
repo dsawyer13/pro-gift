@@ -11,10 +11,10 @@ $(document).ready(function() {
   function ajaxPost() {
 
       let formData = {
-        'username': $('.username').val(),
-        'password': $('.password').val(),
-        'firstName': $('.firstName').val(),
-        'lastName': $('.lastName').val()
+        username: $('.username').val(),
+        password: $('.password').val(),
+        firstName: $('.firstName').val(),
+        lastName: $('.lastName').val()
       };
       $.ajax({
         type: 'POST',
