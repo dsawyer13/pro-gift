@@ -18,6 +18,7 @@ const {PORT, DATABASE_URL} = require ('./config');
 const app = express();
 app.use(express.json());
 app.use(morgan('common'));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
