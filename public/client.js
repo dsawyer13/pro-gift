@@ -4,18 +4,19 @@ function createAccount() {
   $('signup-submit').on('submit', function(event) {
     event.preventDefault();
 
-    let username = $('.uname').val();
-    let password = $('.pwd').val();
-    let firstName = $('.firstName').val();
-    let lastName = $('.lastName').val();
-    let regData = {'username': username, 'password': password, 'firstName': firstName, 'lastName': lastName};
+    // let username = $('.uname').val();
+    // let password = $('.pwd').val();
+    // let firstName = $('.firstName').val();
+    // let lastName = $('.lastName').val();
+    // let regData = {'username': username, 'password': password, 'firstName': firstName, 'lastName': lastName};
     $.ajax({
-      method: 'POST',
+      type: 'POST',
       url: '/api/users',
-      data: regData,
-      success: function(regData){
-        console.log(regData)
-    }
+      data: $('.signup-form').serialize(),
+
+    }).done(response => {
+      console.log(response)
+    })
   })
 }
 
