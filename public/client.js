@@ -48,7 +48,7 @@
     $.ajax({
       url: '/api/users',
       type: 'POST',
-      data: JSON.stringify(formData),
+      data: formData,
       contentType: 'application/json',
       processData: false,
       success: function(data) {
