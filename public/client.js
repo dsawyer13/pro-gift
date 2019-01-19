@@ -18,7 +18,7 @@ $(document).ready(function() {
       $.ajax({
         type: 'POST',
         url: window.location + '/api/users',
-        data: JSON.strigify(formData),
+        data: JSON.stringify(formData),
         dataType: 'json',
         success: function(data){
           $('.test').html("<p>" +
