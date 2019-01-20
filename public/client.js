@@ -41,8 +41,8 @@ const loginPage =
         dataType: 'json',
         contentType: 'application/json'
       })
-      $('.container').html(loginPage);
   });
+  $('.container').html(loginPage);
 }
 
 
