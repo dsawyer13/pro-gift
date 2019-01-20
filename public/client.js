@@ -1,19 +1,19 @@
 
 'use strict';
 
-const loginPage =
-  '<div class="login">' +
-  '<form class="login-form">' +
-  '<fieldset>' +
-  '<legend>Log In</legend>' +
-  '<label for="username">Username</label>' +
-  '<input type="text" class="login-username" name="username" placeholder="Enter Username" required>' +
-  '<label for="password">Password</label>' +
-  '<input type="password" class="login-password" name="password" placeholder="Enter Password" required>' +
-  '<button type="submit" class="login-submit">Sign In</button>' +
-  '</fieldset>' +
-  '</form>' +
-  '</div>';
+// const loginPage =
+//   '<div class="login">' +
+//   '<form class="login-form">' +
+//   '<fieldset>' +
+//   '<legend>Log In</legend>' +
+//   '<label for="username">Username</label>' +
+//   '<input type="text" class="login-username" name="username" placeholder="Enter Username" required>' +
+//   '<label for="password">Password</label>' +
+//   '<input type="password" class="login-password" name="password" placeholder="Enter Password" required>' +
+//   '<button type="submit" class="login-submit">Sign In</button>' +
+//   '</fieldset>' +
+//   '</form>' +
+//   '</div>';
 
 
 
