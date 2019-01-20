@@ -31,8 +31,8 @@
       dataType: 'json',
       contentType: 'application/json'
     })
-    });
-  )}
+  };
+
 
 
 
