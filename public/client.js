@@ -41,8 +41,8 @@ const loginPage =
         dataType: 'json',
         contentType: 'application/json'
       })
-      $('.signup').css("display", "none");
-      $('.login').html(loginPage);
+      // $('.signup').css("display", "none");
+      // $('.login').html(loginPage);
   });
 }
 
