@@ -37,11 +37,11 @@ const loginPage =
         data: JSON.stringify(formData),
         success: function(data) {
           console.log(data);
-          $('.container').html(loginPage);
         },
         dataType: 'json',
         contentType: 'application/json'
       })
+      $('.container').html(loginPage);
   });
 }
 
