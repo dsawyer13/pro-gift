@@ -1,8 +1,8 @@
-// 
-// 'use strict';
-//
-//
-//
+
+'use strict';
+
+
+
 //   // function handleSignupSubmit() {
 //   //
 //   //   $('.signup-form').submit(function(e) {
@@ -33,34 +33,34 @@
 //   //   });)
 //   // }
 //
-//   function submitHandler() {
-//     $('.signup-form').on('submit', '.signup-button', function(event) {
-//
-//     event.preventDefault();
-//
-//     console.log($('.username').val());
-//
-//     // let formData = {
-//     //   username: $('.username').val(),
-//     //   password: $('.password').val(),
-//     //   firstName: $('.firstName').val(),
-//     //   lastName: $('.lastName').val()
-//     // }
-//     //
-//     // $.ajax({
-//     //   url: 'https://powerful-mountain-84317.herokuapp.com/api/users',
-//     //   method: 'POST',
-//     //   data: formData,
-//     //   contentType: 'application/json',
-//     //   success: function(data) {
-//     //     console.log(JSON.stringify(data));
-//     //   }
-//     })
-//   })
-// }
-//
-//
-// $(function() {
-//   submitHandler()
-//
-// })
+  function submitHandler() {
+    $('.signup-form').on('submit', '.signup-button', function(event) {
+
+    event.preventDefault();
+
+    console.log($('.username').val());
+
+    let formData = {
+      username: $('.username').val(),
+      password: $('.password').val(),
+      firstName: $('.firstName').val(),
+      lastName: $('.lastName').val()
+    }
+
+    $.ajax({
+      url: 'https://powerful-mountain-84317.herokuapp.com/api/users',
+      method: 'POST',
+      data: formData,
+      contentType: 'application/json',
+      success: function(data) {
+        console.log(JSON.stringify(data));
+      }
+    })
+  })
+}
+
+
+$(function() {
+  submitHandler()
+
+})
