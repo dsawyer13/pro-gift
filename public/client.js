@@ -7,7 +7,6 @@
     $('.signup-form').submit(function(e) {
       e.preventDefault();
 
-      console.log(userInfo);
 
       const formData = {
         username: $(e.currentTarget).find('.username').val(),
