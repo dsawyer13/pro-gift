@@ -64,8 +64,8 @@ function handleLogin(data) {
       dataType: 'json',
       contentType: 'application/json'
     })
-  });
-}
+  };
+
 
 
 $(function() {
