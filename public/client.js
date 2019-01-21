@@ -46,14 +46,14 @@ function createAccount() {
         $.ajax({
           method: 'POST',
           url: '/api/auth/login',
-          data: JSON.stringify(formData),
+          data: JSON.stringify(loginData),
           success: function(data) {
             console.log(data);
           },
           dataType: 'json',
           contentType: 'application/json'
         });
-        
+
       },
       dataType: 'json',
       contentType: 'application/json'
