@@ -37,7 +37,7 @@ function createAccount() {
       data: JSON.stringify(formData),
       success: function(data) {
           console.log(data)
-          handleLogin(data);
+          // handleLogin(data);
       },
       dataType: 'json',
       contentType: 'application/json'
@@ -47,30 +47,30 @@ function createAccount() {
 }
 
 
-function handleLogin(data) {
-  $('.login-form').submit(function(e) {
-    e.preventDefault();
-
-    const formData = {
-      username: $(e.currentTarget).find('.username').val(),
-      password: $(e.currentTarget).find('.password').val()
-    };
-
-    $.ajax({
-      method: 'POST',
-      url: '/api/auth/login',
-      data: JSON.stringify(formData),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    })
-  })
-}
+// function handleLogin(data) {
+//   $('.login-form').submit(function(e) {
+//     e.preventDefault();
+//
+//     const formData = {
+//       username: $(e.currentTarget).find('.username').val(),
+//       password: $(e.currentTarget).find('.password').val()
+//     };
+//
+//     $.ajax({
+//       method: 'POST',
+//       url: '/api/auth/login',
+//       data: JSON.stringify(formData),
+//       success: function(data) {
+//         console.log(data);
+//       },
+//       dataType: 'json',
+//       contentType: 'application/json'
+//     })
+//   })
+// }
 
 
 $(function() {
   createAccount();
-  handleLogin();
+  // handleLogin();
 })
