@@ -91,5 +91,5 @@ function accessLogin() {
 
 $(function() {
   createAccount();
-
+  accessLogin();
 })
