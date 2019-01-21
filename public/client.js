@@ -68,7 +68,7 @@ function authenticateUser(data) {
   //store token in localStorage and put it in header for GET request
   console.log(data);
   const token = data.authToken;
-  const token = data[authToken];
+  const token2 = data[authToken];
   console.log(token);
   localStorage.setItem('token', token);
 
