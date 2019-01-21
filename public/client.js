@@ -67,9 +67,9 @@ function createAccount() {
 function authenticateUser(data) {
   //store token in localStorage and put it in header for GET request
   console.log(data);
-  const token = data.authToken;
+  const token = data.authToken[0];
   const token2 = data[authToken];
-  console.log(token2);
+  console.log(token);
   localStorage.setItem('token', token);
 
   $.ajax({
