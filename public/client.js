@@ -31,13 +31,29 @@ function createAccount() {
       lastName: $(e.currentTarget).find('.lastName').val()
       };
 
+    const loginData = {
+      username: $(e.currentTarget).find('.username').val(),
+      password: $(e.currentTarget).find('.password').val()
+    };
+
     $.ajax({
       method: 'POST',
       url: '/api/users',
       data: JSON.stringify(formData),
       success: function(data) {
-          console.log(data);
-          handleLogin(data);
+        console.log(data);
+
+        $.ajax({
+          method: 'POST',
+          url: '/api/auth/login',
+          data: JSON.stringify(formData),
+          success: function(data) {
+            console.log(data);
+          },
+          dataType: 'json',
+          contentType: 'application/json'
+        });
+        
       },
       dataType: 'json',
       contentType: 'application/json'
@@ -47,28 +63,28 @@ function createAccount() {
 }
 
 
-function handleLogin(data) {
-
-    const formData = {
-      username: ('.username').val(),
-      password: ('.password').val()
-    };
-
-    $.ajax({
-      method: 'POST',
-      url: '/api/auth/login',
-      data: JSON.stringify(formData),
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    })
-  };
+// function handleLogin(data) {
+//
+//     const formData = {
+//       username: ('.username').val(),
+//       password: ('.password').val()
+//     };
+//
+//     $.ajax({
+//       method: 'POST',
+//       url: '/api/auth/login',
+//       data: JSON.stringify(formData),
+//       success: function(data) {
+//         console.log(data);
+//       },
+//       dataType: 'json',
+//       contentType: 'application/json'
+//     })
+//   };
 
 
 
 $(function() {
   createAccount();
-  handleLogin();
+  // handleLogin();
 })
