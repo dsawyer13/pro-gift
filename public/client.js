@@ -69,7 +69,7 @@ function authenticateUser(data) {
   console.log(data);
   const token = data.authToken;
   const token2 = data[authToken];
-  console.log(token);
+  console.log(token2);
   localStorage.setItem('token', token);
 
   $.ajax({
