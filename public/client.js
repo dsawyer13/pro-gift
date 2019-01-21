@@ -47,7 +47,7 @@ function createAccount() {
 
 
 function handleLogin(data) {
-  $('.login-form').submit(function(e) => {
+  $('.login-form').submit(function(e) {
     e.preventDefault();
 
     const formData = {
