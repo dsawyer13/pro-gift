@@ -49,7 +49,7 @@ function createAccount() {
           data: JSON.stringify(loginData),
           success: function(data) {
             console.log(data);
-            authenticateUser(data);
+            // authenticateUser(data);
           },
           dataType: 'json',
           contentType: 'application/json'
@@ -64,19 +64,19 @@ function createAccount() {
 }
 
 
-function authenticateUser(data) {
-  //store token in localStorage and put it in header for GET request
-  const token = data[authToken];
-  localStorage.setItem('token', token);
-
-  $.ajax({
-    method: 'GET',
-    url: '/api/protected',
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  });
-}
+// function authenticateUser(data) {
+//   //store token in localStorage and put it in header for GET request
+//   const token = data[authToken];
+//   localStorage.setItem('token', token);
+//
+//   $.ajax({
+//     method: 'GET',
+//     url: '/api/protected',
+//     headers: {
+//       'Authorization': `Bearer ${token}`
+//     }
+//   });
+// }
 
 function accessLogin() {
   //switch to login form on click of Log In link
