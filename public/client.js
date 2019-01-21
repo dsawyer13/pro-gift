@@ -89,5 +89,5 @@ function accessLogin() {
 
 $(function() {
   createAccount();
-  authenticateUser();
+  
 })
