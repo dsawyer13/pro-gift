@@ -49,6 +49,10 @@ function createAccount() {
           data: JSON.stringify(loginData),
           success: function(data) {
             console.log(data);
+            //const token = data.authToken;
+            //localStorage.setItem("token", token);
+            authenticateUser(data);
+
           },
           dataType: 'json',
           contentType: 'application/json'
@@ -62,6 +66,19 @@ function createAccount() {
   });
 }
 
+
+function authenticateUser(data) {
+  const token = data.authToken;
+  localStorage.setItem('token', token);
+
+  $.ajax({
+    method: 'GET',
+    url: '/api/protected',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    }
+  })
+}
 
 // function handleLogin(data) {
 //
