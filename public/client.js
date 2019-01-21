@@ -74,7 +74,9 @@ function authenticateUser(data) {
     url: '/api/protected',
     headers: {
       'Authorization': `Bearer ${token}`
-    }
+    },
+    dataType: 'json',
+    contentType: 'application/json'
   });
 }
 
@@ -89,5 +91,5 @@ function accessLogin() {
 
 $(function() {
   createAccount();
-  
+
 })
