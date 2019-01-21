@@ -50,8 +50,8 @@ function createAccount() {
 function handleLogin(data) {
 
     const formData = {
-      username: $(e.currentTarget).find('.username').val(),
-      password: $(e.currentTarget).find('.password').val()
+      username: find('.username').val(),
+      password: find('.password').val()
     };
 
     $.ajax({
