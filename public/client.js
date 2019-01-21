@@ -42,7 +42,7 @@ function createAccount() {
       dataType: 'json',
       contentType: 'application/json'
     })
-      $('.container').html(loginPage);
+      // $('.container').html(loginPage);
   });
 }
 
