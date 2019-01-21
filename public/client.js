@@ -36,7 +36,7 @@ function createAccount() {
       url: '/api/users',
       data: JSON.stringify(formData),
       success: function(data) {
-          console.log(data)
+          console.log(data);
           // handleLogin(data);
       },
       dataType: 'json',
