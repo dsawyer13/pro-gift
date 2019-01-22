@@ -67,8 +67,9 @@ function createAccount() {
 function authenticateUser(data) {
   //store token in localStorage and put it in header for GET request
   console.log(data);
-  const token = data.authToken[0];
-  const token2 = data[authToken];
+  //How to I get the token out of the object???
+  const token = data[0].authToken;
+
   console.log(token);
   localStorage.setItem('token', token);
 
@@ -84,6 +85,7 @@ function authenticateUser(data) {
 }
 
 function accessLogin() {
+
   //switch to login form on click of Log In link
   $('.access-login').on('click', function(e) {
     $('.container').html(loginPage);
