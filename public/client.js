@@ -67,8 +67,9 @@ function createAccount() {
 function authenticateUser(data) {
   //store token in localStorage and put it in header for GET request
   console.log(data);
+  console.log(typeof data);
   //How to I get the token out of the object???
-  const token = data[0].authToken;
+  const token = data.authToken;
 
   console.log(token);
   localStorage.setItem('token', token);
