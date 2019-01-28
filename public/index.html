@@ -7,29 +7,27 @@
   </head>
   <body>
     <main class="container">
-      <div class="signup">
         <form class="signup-form">
           <fieldset>
             <legend>Sign up</legend>
             <label for="username">Username</label>
-            <input type="text" class="username" name="username" placeholder="Enter Username" required>
+            <input autocomplete="off" type="text" class="username" name="username" placeholder="Enter Username" required>
 
             <label for="password">Password</label>
-            <input type="password" class="password" name="password" placeholder="Enter Password" required>
+            <input autocomplete="off" type="password" class="password" name="password" placeholder="Enter Password" required>
 
             <label for="firstName">First Name</label>
-            <input type="text" class="firstName" name="firstName" placeholder="Enter First Name" required>
+            <input autocomplete="off" type="text" class="firstName" name="firstName" placeholder="Enter First Name" required>
 
             <label for="lastName">Last Name</label>
-            <input type="text" class="lastName" name="lastName" placeholder="Enter Last Name" required>
+            <input autocomplete="off" type="text" class="lastName" name="lastName" placeholder="Enter Last Name" required>
 
-            <button type="submit" class="signup-submit">Sign In</button>
+            <button type="submit" class="form-submit">Sign Up</button>
 
           </fieldset>
         </form>
-        <p class="haveAccount">Have an account? <a href="" class="access-login">Log in</a></p>
+        <p class="haveAccount">Have an account? <a href="login.html" class="access-login">Log in</a></p>
 
-      </div>
 
     <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="client.js"></script>

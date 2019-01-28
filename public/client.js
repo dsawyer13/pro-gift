@@ -1,26 +1,44 @@
-
 'use strict';
 
-const loginPage =
-  '<div class="login">' +
+const loginForm = (
   '<form class="login-form">' +
   '<fieldset>' +
   '<legend>Log In</legend>' +
   '<label for="username">Username</label>' +
-  '<input type="text" class="login-username" name="username" placeholder="Enter Username" required>' +
+  '<input autocomplete="off" type="text" class="username" name="username" placeholder="Enter Username" required>' +
   '<label for="password">Password</label>' +
-  '<input type="password" class="login-password" name="password" placeholder="Enter Password" required>' +
-  '<button type="submit" class="login-submit">Sign In</button>' +
+  '<input autocomplete="off" type="password" class="password" name="password" placeholder="Enter Password" required>' +
+  '<button type="submit" class="form-submit">Log In</button>' +
   '</fieldset>' +
+  '</form>'
+);
+
+const giftTemplate = (
+  '<li class="gift">' +
+    '<div class="gift-name"></div>'+
+    '<div class="gift-price"></div>'+
+    '<div class="buttons">' +
+      '<button class="edit">Edit</button>' +
+      '<button class="delete">Delete</button>' +
+    '</div>' +
+  '</li>'
+);
+const homePage = (
+  '<h1 class="display-name"></h1>' +
+  '<div class="list-container">' +
+  '<ul class="gift-list"></ul>' +
+  '<div class="gift-info">' +
+  '<form>' +
+  '<input type="text" class="gift-name" placeholder="Item Name" required>' +
+  '<input type="text" class="gift-link" placeholder="Item Link">' +
+  '<input type="text" class="gift-price" placeholder="Price">' +
+  '<button type="submit" class="gift-submit">Submit</button>' +
   '</form>' +
-  '</div>';
-
-
-
-
-
+  '</div>' +
+  '</div>'
+)
 function createAccount() {
-  $('.signup-form').submit(function(e) {
+  $('.signup-form').submit('.form-submit', function(e) {
     e.preventDefault();
 
     //pull data from forms
@@ -47,9 +65,13 @@ function createAccount() {
           method: 'POST',
           url: '/api/auth/login',
           data: JSON.stringify(loginData),
+          //set token in localStorage and pass token to next function
           success: function(data) {
-            console.log(data);
-            authenticateUser(data);
+            const token = data.authToken;
+            localStorage.setItem('token', token);
+            console.log(token);
+            authenticateUser(token);
+
           },
           dataType: 'json',
           contentType: 'application/json'
@@ -59,43 +81,72 @@ function createAccount() {
       dataType: 'json',
       contentType: 'application/json'
     })
-
   });
 }
 
+//use token to access protected endpoint
+function authenticateUser(token) {
 
-function authenticateUser(data) {
-  //store token in localStorage and put it in header for GET request
-  console.log(data);
-  console.log(typeof data);
-  //How to I get the token out of the object???
-  const token = data.authToken;
 
-  console.log(token);
-  localStorage.setItem('token', token);
-
-  $.ajax({
-    method: 'GET',
-    url: '/api/protected',
-    headers: {
-      'Authorization': `Bearer ${token}`
-    },
-    dataType: 'json',
-    contentType: 'application/json'
-  });
-}
-
-function accessLogin() {
-
-  //switch to login form on click of Log In link
-  $('.access-login').on('click', function(e) {
-    $('.container').html(loginPage);
+    $.ajax({
+      method: 'GET',
+      url: '/api/protected',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      success: function(data) {
+        console.log(data)
+        $('.container').html(homePage);
+      },
+      error: function(err) {
+        console.log(err);
+      },
+      dataType: 'json',
+      contentType: 'application/json'
   })
 }
 
 
 
+
+
+// function existingUserLogin() {
+//   $('.login-submit').on('submit', function(e) {
+//     e.preventDefault();
+//
+//     const loginData = {
+//       username: $(e.currentTarget).find('.username').val(),
+//       password: $(e.currentTarget).find('.password').val()
+//     };
+//
+//     $.ajax({
+//       method: 'POST',
+//       url: '/api/auth/login',
+//       data: JSON.stringify(loginData),
+//       success: function(data) {
+//         console.log(data)
+//         const token = data.authToken;
+//
+//         $.ajax({
+//           method: 'GET',
+//           url: '/api/protected',
+//           headers: {
+//             'Authorization': `Bearer ${token}`
+//           },
+//           dataType: 'json',
+//           contentType: 'application/json'
+//         });
+//       },
+//       dataType: 'json',
+//       contentType: 'application/json'
+//     })
+//   })
+// }
+
+
+
 $(function() {
   createAccount();
-  accessLogin();
-})
+
+  // existingUserLogin();
+});

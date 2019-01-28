@@ -20,8 +20,16 @@ app.use(express.json());
 app.use(morgan('common'));
 app.use(express.static("public"));
 
+
+//initial get request loads page based on if token is already set
+//not working
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  const jwtToken = localStorage.getItem('token');
+  if(jwtToken) {
+    res.sendFile(__dirname + "/public/login.html")
+  } else {
+    res.sendFile(__dirname + "/public/index.html");
+  }
 });
 
 app.use(function (req, res, next) {
@@ -37,6 +45,8 @@ app.use(function (req, res, next) {
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
+
+
 app.use('/api/gifts', giftsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
@@ -48,6 +58,10 @@ app.get('/api/protected', jwtAuth, (req, res) => {
     data: 'rosebud'
   });
 });
+
+app.get('/api/login', (req, res) => {
+  res.sendFile(__dirname + "/public/login.html")
+})
 
 app.use('*', (req, res) => {
   return res.status(404).json({message: 'Not Found'});

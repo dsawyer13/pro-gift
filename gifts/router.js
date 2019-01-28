@@ -7,7 +7,7 @@ const { Gift } = require('./models');
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
 
   Gift.find()
     .then(gifts => {
@@ -67,7 +67,7 @@ router.put("/:id", (req, res) => {
        error: 'Request path id and request body id values must match'
      });
    }
-   
+
   const updated = {};
   const updateableFields = ['giftName', 'giftLink', 'giftPrice'];
   updateableFields.forEach(field => {
