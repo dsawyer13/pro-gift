@@ -3,13 +3,15 @@
 const express = require('express');
 
 const { Gift } = require('./models');
+const { User } = require('../users/models')
 
 const router = express.Router();
 
 
-router.get('/:id', (req, res) => {
-
-  Gift.find()
+router.get('/:username', (req, res) => {
+  const currentUser = (req.params.username).toString();
+  console.log(currentUser);
+  Gift.find({"username": currentUser})
     .then(gifts => {
       res.json(gifts.map(gift => gift.serialize()));
     })
@@ -17,11 +19,12 @@ router.get('/:id', (req, res) => {
       console.error(err);
       res.status(500).json({message: 'Internal Server Error'});
     });
-});
+
+})
 
 
-router.post("/", (req, res) => {
-
+router.post("/:username", (req, res) => {
+  console.log(req.params.username)
   const requiredFields = ['giftName', 'giftLink', 'giftPrice'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -34,6 +37,7 @@ router.post("/", (req, res) => {
 
   Gift
     .create({
+      username: req.params.username,
       giftName: req.body.giftName,
       giftLink: req.body.giftLink,
       giftPrice: req.body.giftPrice

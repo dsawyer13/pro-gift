@@ -6,6 +6,7 @@ mongoose.Promise = global.Promise;
 
 
 const giftSchema = mongoose.Schema({
+  username: String,
   giftName: {type: String, required: true},
   giftLink: String,
   giftPrice: String

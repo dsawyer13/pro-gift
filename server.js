@@ -24,12 +24,7 @@ app.use(express.static("public"));
 //initial get request loads page based on if token is already set
 //not working
 app.get("/", (req, res) => {
-  const jwtToken = localStorage.getItem('token');
-  if(jwtToken) {
-    res.sendFile(__dirname + "/public/login.html")
-  } else {
     res.sendFile(__dirname + "/public/index.html");
-  }
 });
 
 app.use(function (req, res, next) {
@@ -54,6 +49,7 @@ app.use('/api/auth', authRouter);
 const jwtAuth = passport.authenticate('jwt', {session: false});
 
 app.get('/api/protected', jwtAuth, (req, res) => {
+
   return res.json({
     data: 'rosebud'
   });

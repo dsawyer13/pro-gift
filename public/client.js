@@ -60,6 +60,9 @@ function createAccount() {
       data: JSON.stringify(formData),
       success: function(data) {
         console.log(data);
+        const user = data.username;
+        localStorage.setItem('username', user);
+        console.log(user)
         //on success, use username/pass to get token
         $.ajax({
           method: 'POST',
@@ -86,17 +89,19 @@ function createAccount() {
 
 //use token to access protected endpoint
 function authenticateUser(token) {
-
+    const user = localStorage.getItem('username');
+    console.log(user);
 
     $.ajax({
       method: 'GET',
-      url: '/api/protected',
+      url: `/api/gifts/${user}`,
       headers: {
         'Authorization': `Bearer ${token}`
       },
       success: function(data) {
         console.log(data)
         $('.container').html(homePage);
+        displayGifts(data)
       },
       error: function(err) {
         console.log(err);
@@ -106,8 +111,9 @@ function authenticateUser(token) {
   })
 }
 
-
-
+function displayGifts(data) {
+  //use list of obje
+}
 
 
 // function existingUserLogin() {
