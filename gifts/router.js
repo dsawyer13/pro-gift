@@ -3,7 +3,6 @@
 const express = require('express');
 
 const { Gift } = require('./models');
-const { User } = require('../users/models')
 
 const router = express.Router();
 

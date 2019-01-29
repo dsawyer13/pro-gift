@@ -14,6 +14,7 @@ const giftSchema = mongoose.Schema({
 
 giftSchema.methods.serialize = function() {
   return {
+    username: this.username,
     id: this._id,
     giftName: this.giftName,
     giftLink: this.giftLink,

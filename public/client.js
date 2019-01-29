@@ -13,30 +13,7 @@ const loginForm = (
   '</form>'
 );
 
-const giftTemplate = (
-  '<li class="gift">' +
-    '<div class="gift-name"></div>'+
-    '<div class="gift-price"></div>'+
-    '<div class="buttons">' +
-      '<button class="edit">Edit</button>' +
-      '<button class="delete">Delete</button>' +
-    '</div>' +
-  '</li>'
-);
-const homePage = (
-  '<h1 class="display-name"></h1>' +
-  '<div class="list-container">' +
-  '<ul class="gift-list"></ul>' +
-  '<div class="gift-info">' +
-  '<form>' +
-  '<input type="text" class="gift-name" placeholder="Item Name" required>' +
-  '<input type="text" class="gift-link" placeholder="Item Link">' +
-  '<input type="text" class="gift-price" placeholder="Price">' +
-  '<button type="submit" class="gift-submit">Submit</button>' +
-  '</form>' +
-  '</div>' +
-  '</div>'
-)
+
 function createAccount() {
   $('.signup-form').submit('.form-submit', function(e) {
     e.preventDefault();
@@ -90,7 +67,7 @@ function createAccount() {
 //use token to access protected endpoint
 function authenticateUser(token) {
     const user = localStorage.getItem('username');
-    console.log(user);
+    //console.log(user);
 
     $.ajax({
       method: 'GET',
@@ -99,12 +76,12 @@ function authenticateUser(token) {
         'Authorization': `Bearer ${token}`
       },
       success: function(data) {
-        console.log(data)
-        $('.container').html(homePage);
-        displayGifts(data)
+        console.log(data);
+        $('.container').empty();
+        displayGifts(data);
       },
       error: function(err) {
-        console.log(err);
+        //console.log(err);
       },
       dataType: 'json',
       contentType: 'application/json'
@@ -112,7 +89,23 @@ function authenticateUser(token) {
 }
 
 function displayGifts(data) {
-  //use list of obje
+  console.log(data);
+  // $('.list-header').html(`${data.username}'s List'`);
+  // $('.gift-list').empty();
+  //
+  // for (let i = 0; i < data.length; i++) {
+  //   $('.gift-list').append(
+  //     `<li class="eachResult">
+  //         <div class="hyperlink"><a href="${data.giftLink}">${data.giftName}</a></div>
+  //         <div class="price">${data.giftPrice}</price>
+  //         <div class="buttons">
+  //           <button type="button">Edit</button>
+  //           <button type="button">Delete</button>
+  //         </div>
+  //     </li>
+  //     `
+//   )
+// };
 }
 
 
