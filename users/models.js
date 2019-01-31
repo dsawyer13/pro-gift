@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+// created_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+
 const UserSchema = mongoose.Schema({
   username: {
     type: String,

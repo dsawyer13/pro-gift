@@ -1,17 +1,17 @@
 'use strict';
 
-const loginForm = (
-  '<form class="login-form">' +
-  '<fieldset>' +
-  '<legend>Log In</legend>' +
-  '<label for="username">Username</label>' +
-  '<input autocomplete="off" type="text" class="username" name="username" placeholder="Enter Username" required>' +
-  '<label for="password">Password</label>' +
-  '<input autocomplete="off" type="password" class="password" name="password" placeholder="Enter Password" required>' +
-  '<button type="submit" class="form-submit">Log In</button>' +
-  '</fieldset>' +
-  '</form>'
-);
+// const loginForm = (
+//   '<form class="login-form">' +
+//   '<fieldset>' +
+//   '<legend>Log In</legend>' +
+//   '<label for="username">Username</label>' +
+//   '<input autocomplete="off" type="text" class="username" name="username" placeholder="Enter Username" required>' +
+//   '<label for="password">Password</label>' +
+//   '<input autocomplete="off" type="password" class="password" name="password" placeholder="Enter Password" required>' +
+//   '<button type="submit" class="form-submit">Log In</button>' +
+//   '</fieldset>' +
+//   '</form>'
+// );
 
 
 function createAccount() {
@@ -37,9 +37,11 @@ function createAccount() {
       data: JSON.stringify(formData),
       success: function(data) {
         console.log(data);
-        const user = data.username;
-        localStorage.setItem('username', user);
-        console.log(user)
+        const fullName = data.firstName + ' ' + data.lastName;
+        localStorage.setItem('fullName', fullName);
+        console.log(localStorage.getItem('fullName'));
+        localStorage.setItem('username', data.username);
+        console.log(localStorage.getItem('username'))
         //on success, use username/pass to get token
         $.ajax({
           method: 'POST',
@@ -71,42 +73,51 @@ function authenticateUser(token) {
 
     $.ajax({
       method: 'GET',
-      url: `/api/gifts/${user}`,
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
+
+       url: `/api/gifts/${user}`,
+       headers: {
+         'Authorization': `Bearer ${token}`
+       },
       success: function(data) {
-        console.log(data);
-        $('.container').empty();
-        displayGifts(data);
+        $.ajax({
+          method: 'GET',
+          url: '/home',
+          dataType: 'json',
+          contentType: 'application/json',
+          success: function(data) {
+            console.log(data)
+          }
+        })
       },
       error: function(err) {
-        //console.log(err);
+        console.log(err);
       },
       dataType: 'json',
       contentType: 'application/json'
   })
 }
 
-function displayGifts(data) {
-  console.log(data);
-  // $('.list-header').html(`${data.username}'s List'`);
-  // $('.gift-list').empty();
-  //
-  // for (let i = 0; i < data.length; i++) {
-  //   $('.gift-list').append(
-  //     `<li class="eachResult">
-  //         <div class="hyperlink"><a href="${data.giftLink}">${data.giftName}</a></div>
-  //         <div class="price">${data.giftPrice}</price>
-  //         <div class="buttons">
-  //           <button type="button">Edit</button>
-  //           <button type="button">Delete</button>
-  //         </div>
-  //     </li>
-  //     `
-//   )
-// };
-}
+// function displayGifts(data) {
+//
+//
+//   const fullName = localStorage.getItem('fullName');
+//   $('.user-header').html(`${fullName}'s List'`);
+//
+//
+//   for (let i = 0; i < data.length; i++) {
+//     $('.gift-list').append(
+//       `<li class="eachResult">
+//            <div class="hyperlink"><a href="${data.giftLink}">${data.giftName}</a></div>
+//            <div class="price">${data.giftPrice}</price>
+//            <div class="buttons">
+//              <button type="button">Edit</button>
+//              <button type="button">Delete</button>
+//            </div>
+//        </li>
+//        `
+//    )
+//  };
+// }
 
 
 // function existingUserLogin() {
@@ -142,10 +153,25 @@ function displayGifts(data) {
 //   })
 // }
 
+function redirectPage() {
+  $('.form-submit').on('click', function(e) {
+    e.preventDefault();
+    
+    $.ajax({
+      method: 'GET',
+      url: '/home',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(data) {
+        console.log(data);
+      }
+    })
+  })
+}
 
 
 $(function() {
-  createAccount();
-
+  // createAccount();
+  redirectPage();
   // existingUserLogin();
 });

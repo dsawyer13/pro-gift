@@ -21,11 +21,14 @@ app.use(morgan('common'));
 app.use(express.static("public"));
 
 
-//initial get request loads page based on if token is already set
-//not working
+
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+    res.sendFile(__dirname + "/views/index.html");
 });
+
+app.get("/home", (req, res) => {
+  return res.redirect("/views/gifts.html");
+})
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -48,12 +51,14 @@ app.use('/api/auth', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
 
-app.get('/api/protected', jwtAuth, (req, res) => {
 
-  return res.json({
-    data: 'rosebud'
-  });
-});
+
+// app.get('/api/protected', jwtAuth, (req, res) => {
+//
+//   return res.json({
+//     data: 'rosebud'
+//   });
+// });
 
 app.get('/api/login', (req, res) => {
   res.sendFile(__dirname + "/public/login.html")

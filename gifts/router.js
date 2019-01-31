@@ -5,9 +5,13 @@ const express = require('express');
 const { Gift } = require('./models');
 
 const router = express.Router();
-
+const passport = require('passport');
+const jwtAuth = passport.authenticate('jwt', {session: false});
 
 router.get('/:username', (req, res) => {
+  
+
+
   const currentUser = (req.params.username).toString();
   console.log(currentUser);
   Gift.find({"username": currentUser})
