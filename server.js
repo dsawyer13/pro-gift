@@ -1,6 +1,7 @@
 'use strict';
 
 require('dotenv').config();
+const fs = require('fs');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -20,14 +21,22 @@ app.use(express.json());
 app.use(morgan('common'));
 app.use(express.static("public"));
 
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
+const jwtAuth = passport.authenticate('jwt', {session: false});
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
 
 app.get("/home", (req, res) => {
-  return res.redirect("/views/gifts.html");
+  res.sendFile(__dirname + "/views/gifts.html")
+
+})
+
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/views/login.html")
 })
 
 app.use(function (req, res, next) {
@@ -40,29 +49,14 @@ app.use(function (req, res, next) {
   next();
 });
 
-passport.use(localStrategy);
-passport.use(jwtStrategy);
 
 
-
-app.use('/api/gifts', giftsRouter);
+app.use('/api/gifts', jwtAuth, giftsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 
-const jwtAuth = passport.authenticate('jwt', {session: false});
 
 
-
-// app.get('/api/protected', jwtAuth, (req, res) => {
-//
-//   return res.json({
-//     data: 'rosebud'
-//   });
-// });
-
-app.get('/api/login', (req, res) => {
-  res.sendFile(__dirname + "/public/login.html")
-})
 
 app.use('*', (req, res) => {
   return res.status(404).json({message: 'Not Found'});

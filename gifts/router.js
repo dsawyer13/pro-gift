@@ -8,12 +8,14 @@ const router = express.Router();
 const passport = require('passport');
 const jwtAuth = passport.authenticate('jwt', {session: false});
 
+router.get('/', (req, res) => {
+  console.log("Successful authentication");
+})
+
 router.get('/:username', (req, res) => {
-  
 
+  const currentUser = (req.params.username).toString()
 
-  const currentUser = (req.params.username).toString();
-  console.log(currentUser);
   Gift.find({"username": currentUser})
     .then(gifts => {
       res.json(gifts.map(gift => gift.serialize()));
@@ -27,7 +29,7 @@ router.get('/:username', (req, res) => {
 
 
 router.post("/:username", (req, res) => {
-  console.log(req.params.username)
+
   const requiredFields = ['giftName', 'giftLink', 'giftPrice'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];

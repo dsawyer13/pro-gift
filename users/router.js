@@ -121,8 +121,10 @@ router.post('/', jsonParser, (req, res) => {
     });
 });
 
-router.get('/', (req, res) => {
-  return User.find()
+router.get('/:username', (req, res) => {
+  const currentUser = (req.params.username).toString();
+
+  return User.find({"username": currentUser })
     .then(users => res.json(users.map(user => user.serialize())))
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
