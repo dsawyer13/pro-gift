@@ -1,60 +1,113 @@
-'use strict';
-$(function() {
-  const fullName = localStorage.getItem('fullName');
-  const giftData = localStorage.getItem('gifts');
-  const parsedGiftData = JSON.parse(giftData);
-  console.log(parsedGiftData)
-  $('.display-name').html(`${fullName}'s gift list`)
-
-  for (let i = 0; i < parsedGiftData.length; i++) {
-    $('.gift-list').append(
-      `<li class="eachResult">
-           <div class="hyperlink"><a href="${parsedGiftData[i].giftLink}">${parsedGiftData[i].giftName}</a></div>
-           <div class="price">${parsedGiftData[i].giftPrice}</price>
-           <div class="buttons">
-             <button type="button">Edit</button>
-             <button type="button">Delete</button>
-           </div>
-       </li>
-       `
-   )
- };
-
-})
+const giftItemTemplate =
+     '<li class="gift-item">' +
+     '<div class="hyperlink"></div>' +
+     '<div class="price"></price>' +
+     '<div class="buttons">' +
+     '<button class="delete-button" type="button">Delete</button>' +
+     '</div>' +
+     '</li>';
 
 
-function addGift() {
-  $('.gift-submit').on('click', function(e) {
+const username = localStorage.getItem('username');
+const token = localStorage.getItem('token');
+
+function getAndDisplayGiftList() {
+  console.log('Retrieving gift list');
+
+  $.getJSON(`/api/gifts/${username}`, function(items) {
+
+    let itemElements = items.map(function(item) {
+      let element = $(giftItemTemplate);
+      element.attr('id', item.id);
+      let itemName = element.find('.hyperlink');
+      itemName.append(`<a href=${item.giftLink}>${item.giftName}</a>`);
+
+      return element
+  });
+  $('.gift-list').html(itemElements)
+});
+}
+
+function addGiftItem(item) {
+  console.log("Adding " + item);
+
+  $.ajax({
+    method: 'POST',
+    url: `/api/gifts/${username}`,
+    headers: {
+      'Authorization': `Bearer ${token}`
+    },
+    data: JSON.stringify(item),
+    success: function(data) {
+      console.log(data)
+     getAndDisplayGiftList();
+    },
+    dataType: 'json',
+    contentType: "application/json"
+  });
+}
+
+function deleteGiftItem(itemId) {
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/gifts/${itemId}`,
+    success: getAndDisplayGiftList
+  });
+}
+
+function handleGiftAdd() {
+  $('.gift-input').submit(function(e) {
     e.preventDefault();
+    console.log($('.gift-name').val())
 
-    const username = localStorage.getItem('username');
-    const token = localStorage.getItem('token');
-
-    const giftInfo = {
+    addGiftItem({
       giftName: $('.gift-name').val(),
       giftLink: $('.gift-link').val(),
       giftPrice: $('.gift-price').val()
-    };
+    });
+  });
+}
 
+function handleGiftDelete() {
+  $('.gift-list').on('click', '.delete-button', function(e) {
+    e.preventDefault();
+    deleteGiftItem(
+      $(e.currentTarget)
+        .closest(".gift-item")
+        .attr('id')
+    );
+  });
+}
+
+function searchUser() {
+  $('.search-users').submit(function(e) {
+    e.preventDefault();
+    const username = $('.username').val();
     $.ajax({
-      method: 'POST',
+      method: 'GET',
       url: `/api/gifts/${username}`,
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      data: JSON.stringify(giftInfo),
       success: function(data) {
         console.log(data)
+        //window.location.href = '/friend';
+        localStorage.setItem('friendGifts', JSON.stringify(data));
       },
       error: function(err) {
-        console.log(err)
+        console.log(err);
       },
       dataType: 'json',
       contentType: 'application/json'
     })
-
   })
 }
 
 
-$(addGift);
+$(function() {
+  //fix this
+  fullName = localStorage.getItem('fullName')
+  $('.display-name').text(fullName)
+
+  getAndDisplayGiftList();
+  handleGiftAdd();
+  handleGiftDelete();
+  searchUser();
+})

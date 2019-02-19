@@ -32,12 +32,15 @@ app.get("/", (req, res) => {
 
 app.get("/home", (req, res) => {
   res.sendFile(__dirname + "/views/gifts.html")
-
-})
+});
 
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/views/login.html")
-})
+});
+
+app.get("/friend", (req, res) => {
+  res.sendFile(__dirname + "/views/friends.html")
+});
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -51,7 +54,7 @@ app.use(function (req, res, next) {
 
 
 
-app.use('/api/gifts', jwtAuth, giftsRouter);
+app.use('/api/gifts', giftsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 

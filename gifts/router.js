@@ -5,12 +5,10 @@ const express = require('express');
 const { Gift } = require('./models');
 
 const router = express.Router();
-const passport = require('passport');
-const jwtAuth = passport.authenticate('jwt', {session: false});
 
-router.get('/', (req, res) => {
-  console.log("Successful authentication");
-})
+
+
+
 
 router.get('/:username', (req, res) => {
 

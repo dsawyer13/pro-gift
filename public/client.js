@@ -1,13 +1,15 @@
 'use strict';
 
 
- //
- // $(function() {
- //   const token = localStorage.getItem('token');
- //   if(token) {
- //     authenticateUser(token)
- //   }
- // })
+
+function sendRegisteredUserToLogin() {
+  const token = localStorage.getItem('token');
+  if(token) {
+    window.location.href = '/login';
+
+  }
+
+}
 
 
 function createAccount() {
@@ -102,6 +104,12 @@ function goToLogin() {
   })
 }
 
+function goToRegister() {
+  $('.access-register').click(function() {
+    window.location.href = '/';
+  })
+}
+
 
  function existingUserLogin() {
    $('.login-form').submit('.login-submit', function(e) {
@@ -134,4 +142,6 @@ $(function() {
   createAccount();
   existingUserLogin();
   goToLogin();
+  goToRegister();
+  //sendRegisteredUserToLogin();
 });
