@@ -43,7 +43,8 @@ router.post("/:username", (req, res) => {
       username: req.params.username,
       giftName: req.body.giftName,
       giftLink: req.body.giftLink,
-      giftPrice: req.body.giftPrice
+      giftPrice: req.body.giftPrice,
+      purchased:
     })
     .then(gift => res.status(201).json(gift.serialize()))
     .catch(err => {

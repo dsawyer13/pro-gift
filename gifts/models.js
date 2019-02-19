@@ -9,7 +9,8 @@ const giftSchema = mongoose.Schema({
   username: String,
   giftName: {type: String, required: true},
   giftLink: String,
-  giftPrice: String
+  giftPrice: String,
+  purchased: {type: Boolean, default: false}
 });
 
 giftSchema.methods.serialize = function() {

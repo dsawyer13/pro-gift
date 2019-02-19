@@ -29,7 +29,7 @@ function displayFriendGiftList() {
 
     let itemElements = items.map(function(item) {
       let element = $(giftItemTemplate);
-      element.attr('id', item.id);
+      element.attr('id', item.id);        
       let itemName = element.find('.hyperlink');
       itemName.append(`<a href=${item.giftLink}>${item.giftName}</a>`)
 

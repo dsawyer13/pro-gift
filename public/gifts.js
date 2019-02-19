@@ -88,7 +88,7 @@ function searchUser() {
       url: `/api/gifts/${username}`,
       success: function(data) {
         console.log(data)
-        //window.location.href = '/friend';
+        window.location.href = '/friend';
         localStorage.setItem('friendGifts', JSON.stringify(data));
       },
       error: function(err) {
