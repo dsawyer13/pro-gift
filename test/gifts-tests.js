@@ -27,6 +27,7 @@ function seedGiftData() {
   const seedData = [];
   for (let i = 1; i <= 10; i++) {
     seedData.push({
+      username: faker.lorem.word(),
       giftName: faker.lorem.word(),
       giftLink: faker.internet.url(),
       giftPrice: faker.lorem.word()
@@ -57,23 +58,30 @@ describe('Gift Registry API resource', function() {
 
     it('should return all existing gifts', function() {
       let res;
-      return chai.request(app)
-        .get('/api/gifts')
+      return Gift
+        .findOne()
+        .then(gift => {
+          return chai.request(app)
+            .get(`/api/gifts/${gift.username}`)
+        })
         .then(_res => {
           res = _res;
           res.should.have.status(200);
           res.body.should.have.lengthOf.at.least(1);
-          return Gift.count()
+
         })
-        .then(count => {
-          res.body.should.have.lengthOf(count);
-        });
+
     });
 
     it('should return gifts with the correct fields', function() {
       let resGift;
-      return chai.request(app)
-        .get('/api/gifts')
+      return Gift
+        .findOne()
+        .then(gift => {
+          return chai.request(app)
+            .get(`/api/gifts/${gift.username}`)
+        })
+
         .then(function(res) {
           res.should.have.status(200);
           res.should.be.json;
@@ -104,10 +112,15 @@ describe('Gift Registry API resource', function() {
         giftLink: faker.internet.url(),
         giftPrice: faker.lorem.word()
       };
+      return Gift
+        .findOne()
+        .then(gift => {
+          newGift.username = gift.username;
 
-      return chai.request(app)
-        .post('/api/gifts')
-        .send(newGift)
+          return chai.request(app)
+            .post(`/api/gifts/${gift.username}`)
+            .send(newGift)
+        })
         .then(function(res) {
           res.should.have.status(201);
           res.should.be.json;

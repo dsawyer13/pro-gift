@@ -1,7 +1,7 @@
 const giftItemTemplate =
      '<li class="gift-item">' +
      '<div class="hyperlink"></div>' +
-     '<div class="price"></price>' +
+     '<div class="price"></div>' +
      '<div class="buttons">' +
      '<button class="delete-button" type="button">Delete</button>' +
      '</div>' +
@@ -21,7 +21,8 @@ function getAndDisplayGiftList() {
       element.attr('id', item.id);
       let itemName = element.find('.hyperlink');
       itemName.append(`<a href=${item.giftLink}>${item.giftName}</a>`);
-
+      let itemPrice = element.find('.price');
+      itemPrice.text(item.giftPrice)
       return element
   });
   $('.gift-list').html(itemElements)
@@ -40,7 +41,7 @@ function addGiftItem(item) {
     data: JSON.stringify(item),
     success: function(data) {
       console.log(data)
-     getAndDisplayGiftList();
+      getAndDisplayGiftList();
     },
     dataType: 'json',
     contentType: "application/json"
@@ -51,6 +52,9 @@ function deleteGiftItem(itemId) {
   $.ajax({
     method: 'DELETE',
     url: `/api/gifts/${itemId}`,
+    headers: {
+      'Authorization': `Bearer ${token}`
+    },
     success: getAndDisplayGiftList
   });
 }
@@ -58,7 +62,6 @@ function deleteGiftItem(itemId) {
 function handleGiftAdd() {
   $('.gift-input').submit(function(e) {
     e.preventDefault();
-    console.log($('.gift-name').val())
 
     addGiftItem({
       giftName: $('.gift-name').val(),
@@ -100,14 +103,19 @@ function searchUser() {
   })
 }
 
+function logoutUser() {
+  $('.logout').click(function(e) {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  })
+}
+
 
 $(function() {
-  //fix this
-  fullName = localStorage.getItem('fullName')
-  $('.display-name').text(fullName)
-
   getAndDisplayGiftList();
   handleGiftAdd();
   handleGiftDelete();
   searchUser();
+  logoutUser();
 })

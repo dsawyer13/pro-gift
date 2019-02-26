@@ -12,6 +12,7 @@ const {router: giftsRouter} = require('./gifts');
 const {router: usersRouter} = require('./users');
 const {router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
+
 mongoose.Promise = global.Promise;
 
 const {PORT, DATABASE_URL} = require ('./config');
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
 
+//doesnt work because after get request is authorized, the window.location.href is still unauthorized
 app.get("/home", (req, res) => {
   res.sendFile(__dirname + "/views/gifts.html")
 });
@@ -37,6 +39,7 @@ app.get("/home", (req, res) => {
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/views/login.html")
 });
+
 
 app.get("/friend", (req, res) => {
   res.sendFile(__dirname + "/views/friends.html")
@@ -52,11 +55,16 @@ app.use(function (req, res, next) {
   next();
 });
 
-
+app.get('/api/protected', jwtAuth, (req, res) => {
+  return res.json({
+    data: 'rosebud'
+  });
+});
 
 app.use('/api/gifts', giftsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
+
 
 
 

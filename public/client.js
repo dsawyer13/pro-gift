@@ -1,16 +1,7 @@
 'use strict';
 
 
-
-function sendRegisteredUserToLogin() {
-  const token = localStorage.getItem('token');
-  if(token) {
-    window.location.href = '/login';
-
-  }
-
-}
-
+const jwtToken = localStorage.getItem('token');
 
 function createAccount() {
   $('.signup-form').submit('.form-submit', function(e) {
@@ -41,6 +32,9 @@ function createAccount() {
 
         getToken(loginData);
       },
+      error: function(err) {
+        console.log(err);
+      },
       dataType: 'json',
       contentType: 'application/json'
     })
@@ -50,14 +44,12 @@ function createAccount() {
 //get jwtToken from server
 function getToken(loginData) {
 
-
   $.ajax({
     method: 'POST',
     url: '/api/auth/login',
     data: JSON.stringify(loginData),
     //set token in localStorage and pass token to next function
     success: function(data) {
-
 
       const token = data.authToken;
       localStorage.setItem('token', token);
@@ -82,7 +74,7 @@ function authenticateUser(token) {
 
        url: `/api/gifts/${username}`,
        headers: {
-         'Authorization': `Bearer ${token}`
+         'Authorization': `Bearer ${jwtToken}`
        },
       success: function(data) {
         console.log(data);
@@ -100,7 +92,16 @@ function authenticateUser(token) {
 
 function goToLogin() {
   $('.access-login').click(function() {
-    window.location.href = '/login';
+    // window.location.href = '/login';
+    $.ajax({
+      method: 'GET',
+      url: '/login',
+      success: function(data) {
+        console.log(data);
+      },
+      dataType: 'json',
+      contentType: 'application/json'
+    })
   })
 }
 
@@ -128,12 +129,44 @@ function goToRegister() {
          localStorage.setItem("fullName", fullName)
          localStorage.setItem("username", data[0].username)
          getToken(loginData);
+       },
+       error: function(err) {
+         console.log(err);
        }
-
      })
-
    })
  }
+
+ function checkKey() {
+   if(jwtToken) {
+     $.ajax({
+       method: 'GET',
+       url: '/protected',
+       headers: {
+         'Authorization': `Bearer ${jwtToken}`
+       },
+       success: function(data) {
+         window.location.href='/home';
+       },
+       error: function(err) {
+         getRefreshToken(jwtToken);
+       },
+     })
+   }
+ }
+
+function getRefreshToken(jwtToken) {
+  $.ajax({
+    method: 'POST',
+    url: '/api/auth/refresh',
+    headers: {
+      'Authorization': `Bearer ${jwtToken}`
+    },
+    success: function(data) {
+      localStorage.setItem('token',data.authToken);
+    }
+  })
+}
 
 
 
@@ -143,5 +176,6 @@ $(function() {
   existingUserLogin();
   goToLogin();
   goToRegister();
-  //sendRegisteredUserToLogin();
+  checkKey();
+
 });

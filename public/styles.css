@@ -46,3 +46,7 @@ label {
 .haveAccount {
   text-align: center;
 }
+
+.purchasedGift {
+  text-decoration: line-through;
+}

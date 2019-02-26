@@ -19,7 +19,8 @@ giftSchema.methods.serialize = function() {
     id: this._id,
     giftName: this.giftName,
     giftLink: this.giftLink,
-    giftPrice: this.giftPrice
+    giftPrice: this.giftPrice,
+    purchased: this.purchased
   };
 };
 
