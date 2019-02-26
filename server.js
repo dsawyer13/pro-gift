@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 //doesnt work because after get request is authorized, the window.location.href is still unauthorized
-app.get("/home", (req, res) => {
+app.get("/home", jwtAuth, (req, res) => {
   res.sendFile(__dirname + "/views/gifts.html")
 });
 

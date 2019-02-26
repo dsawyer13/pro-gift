@@ -92,16 +92,7 @@ function authenticateUser(token) {
 
 function goToLogin() {
   $('.access-login').click(function() {
-    // window.location.href = '/login';
-    $.ajax({
-      method: 'GET',
-      url: '/login',
-      success: function(data) {
-        console.log(data);
-      },
-      dataType: 'json',
-      contentType: 'application/json'
-    })
+    window.location.href = '/login';
   })
 }
 
@@ -141,7 +132,7 @@ function goToRegister() {
    if(jwtToken) {
      $.ajax({
        method: 'GET',
-       url: '/protected',
+       url: '/api/protected',
        headers: {
          'Authorization': `Bearer ${jwtToken}`
        },
@@ -170,12 +161,11 @@ function getRefreshToken(jwtToken) {
 
 
 
-
 $(function() {
   createAccount();
   existingUserLogin();
   goToLogin();
   goToRegister();
   checkKey();
-
+  //sendRegisteredUserToLogin();
 });
