@@ -75,9 +75,9 @@ router.post('/', jsonParser, (req, res) => {
       code: 422,
       reason: 'ValidationError',
       message: tooSmallField
-        ? `Must be at least ${sizedFields[tooSmallField]
+        ? `Password must be at least ${sizedFields[tooSmallField]
         .min} characters long`
-        : `Must be at least ${sizedFields[tooLargeField]
+        : `Password must be at least ${sizedFields[tooLargeField]
         .max} characters long`,
       location: tooSmallField || tooLargeField
     });
@@ -120,13 +120,25 @@ router.post('/', jsonParser, (req, res) => {
       res.status(500).json({code: 500, message: 'Internal server error'});
     });
 });
+router.get('/', (req, res) => {
+  return User.find()
+    .then(users => res.json(users.map(user => user.serialize())))
+    .catch(err => res.status(500).json({message: 'Internal server error'}));
+});
 
 router.get('/:username', (req, res) => {
   const currentUser = (req.params.username).toString();
+    return User.find({"username": currentUser })
+      .then(users => res.json(users.map(user => user.serialize())))
+      .catch(err => res.status(500).json({message: 'Internal server error'}));
+});
 
-  return User.find({"username": currentUser })
-    .then(users => res.json(users.map(user => user.serialize())))
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
+router.get('/verify/:username', (req, res) => {
+  const currentUser = (req.params.username)
+  const empty = [];
+  User.findOne({ "username": currentUser})
+    .then(users => res.json(users))
+
 });
 
 module.exports = {router};

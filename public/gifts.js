@@ -62,14 +62,24 @@ function deleteGiftItem(itemId) {
 function handleGiftAdd() {
   $('.gift-input').submit(function(e) {
     e.preventDefault();
-
+    let giftLink = $('.gift-link').val();
+    const prefix = 'http://';
+    if (giftLink.substr(0, prefix.length) !== prefix) {
+      giftLink = prefix + giftLink
+      console.log(giftLink)
+      addGiftItem({
+        giftName: $('.gift-name').val(),
+        giftLink: giftLink,
+        giftPrice: $('.gift-price').val()
+      });
+    } else {
     addGiftItem({
       giftName: $('.gift-name').val(),
       giftLink: $('.gift-link').val(),
       giftPrice: $('.gift-price').val()
     });
-  });
-}
+  };
+})}
 
 function handleGiftDelete() {
   $('.gift-list').on('click', '.delete-button', function(e) {

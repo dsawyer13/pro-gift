@@ -27,12 +27,14 @@ passport.use(jwtStrategy);
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
 
+
+
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
 
 //doesnt work because after get request is authorized, the window.location.href is still unauthorized
-app.get("/home", jwtAuth, (req, res) => {
+app.get("/home", (req, res) => {
   res.sendFile(__dirname + "/views/gifts.html")
 });
 

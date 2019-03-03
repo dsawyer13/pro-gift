@@ -33,7 +33,7 @@ function createAccount() {
         getToken(loginData);
       },
       error: function(err) {
-        console.log(err);
+        $('.error-message').text(err.responseJSON.message);
       },
       dataType: 'json',
       contentType: 'application/json'
@@ -57,7 +57,7 @@ function getToken(loginData) {
       authenticateUser(token);
     },
     error: function(err) {
-      console.log(err);
+      $('.error-message').text('Incorrect Username or Password');
     },
     dataType: 'json',
     contentType: 'application/json'
@@ -102,10 +102,27 @@ function goToRegister() {
   })
 }
 
+function verifyExistingUser() {
+  $('.login-form').submit('.login-submit', function(e) {
+    e.preventDefault();
+    const username = $('.username').val()
+    $.ajax({
+      method: 'GET',
+      url: `/api/users/verify/${username}`,
+      success: function(data) {
+        if(data === null) {
+          $('.error-message').text('Incorrect username or password')
+        } else {
+          existingUserLogin()
+        }
+      }
+    })
+  })
+}
 
- function existingUserLogin() {
-   $('.login-form').submit('.login-submit', function(e) {
-     e.preventDefault();
+function existingUserLogin() {
+   // $('.login-form').submit('.login-submit', function(e) {
+   //   e.preventDefault();
      const loginData = {
        username: $('.username').val(),
        password: $('.password').val()
@@ -125,8 +142,8 @@ function goToRegister() {
          console.log(err);
        }
      })
-   })
- }
+   }
+ //}
 
  function checkKey() {
    if(jwtToken) {
@@ -163,9 +180,10 @@ function getRefreshToken(jwtToken) {
 
 $(function() {
   createAccount();
-  existingUserLogin();
+  //existingUserLogin();
   goToLogin();
   goToRegister();
   checkKey();
+  verifyExistingUser();
   //sendRegisteredUserToLogin();
 });
