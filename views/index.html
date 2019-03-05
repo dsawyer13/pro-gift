@@ -6,29 +6,44 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main class="container">
-        <form class="signup-form">
-          <fieldset>
-            <legend>Sign Up</legend>
-            <div class="error-message"></div>
-            <label for="username">Username</label>
-            <input autocomplete="off" type="text" class="username" name="username" placeholder="Enter Username" required>
+    <main>
+      <nav>
+        <div class="logo">ProGift</div>
+      </nav>
+      <section class="content">
+        <div class="landing-info">
+          <h1>All-in-one Gift Registry Service</h1>
+          <ul>
+            <li>Eleminate the hassle of multiple gift registries.</li>
+            <li>ProGift keeps all your gifts in one place.</li>
+            <li>Perfect for Weddings, Baby Showers, and Holidays!</li>
+          </ul>
+          <img class="gifts" src="./giftimage.png">
+        </div>
+        <div class="forms">
+          <form class="signup-form">
+            <fieldset>
+              <legend>Sign Up</legend>
+              <div class="error-message"></div>
+              <label for="username">Username</label>
+              <input autocomplete="off" type="text" class="username" name="username" placeholder="Enter Username" required>
 
-            <label for="password">Password</label>
-            <input autocomplete="off" type="password" class="password" name="password" placeholder="Enter Password" required>
+              <label for="password">Password</label>
+              <input autocomplete="off" type="password" class="password" name="password" placeholder="Enter Password" required>
 
-            <label for="firstName">First Name</label>
-            <input autocomplete="off" type="text" class="firstName" name="firstName" placeholder="Enter First Name" required>
+              <label for="firstName">First Name</label>
+              <input autocomplete="off" type="text" class="firstName" name="firstName" placeholder="Enter First Name" required>
 
-            <label for="lastName">Last Name</label>
-            <input autocomplete="off" type="text" class="lastName" name="lastName" placeholder="Enter Last Name" required>
+              <label for="lastName">Last Name</label>
+              <input autocomplete="off" type="text" class="lastName" name="lastName" placeholder="Enter Last Name" required>
 
-            <button type="submit" class="form-submit">Sign Up</button>
+              <button type="submit" class="form-submit">Sign Up</button>
 
-          </fieldset>
-        </form>
+            </fieldset>
+          </form>
         <p class="haveAccount">Have an account? <a href="javascript:void(0);" class="access-login">Log in</a></p>
-
+      </div>
+      </section>
 
     </main>
     <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

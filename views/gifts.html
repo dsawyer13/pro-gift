@@ -3,27 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>ProGift</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="gifts.css">
   </head>
   <body>
-    <h1 class="yourPageTitle">My List</h1>
-    <div class="logout">Log out</div>
-    <form class="search-users">
-      <input type="text" class="username" placeholder="Search by username">
-      <button type="submit" class="submit-user-search">Submit</button>
-    </form>
-    <div class="list-container">
-      <ul class="gift-list"></ul>
-      <div class="gift-info">
-        <form class="gift-input">
-          <input type="text" class="gift-name" placeholder="Item Name" required>
-          <input type="text" class="gift-link" placeholder="Item Link">
-          <input type="text" class="gift-price" placeholder="Price">
-          <button type="submit" class="gift-submit">Add Gift</button>
-        </form>
-      </div>
-    </div>
-
+    <main>
+      <nav>
+        <div class="logo">ProGift</div>
+      </nav>
+      <section class="content">
+        <div class="side-bar">
+          <img class="profile-pic" src="./profilepic.png">
+          <h1 class="list-title">My List</h1>
+          <div class="logout">Log out</div>
+          <form class="search-users">
+            <input type="text" class="username" placeholder="Search by username">
+            <button type="submit" class="submit-user-search">Submit</button>
+          </form>
+        </div>
+        <div class="list-container">
+          <ul class="gift-list"></ul>
+          <div class="gift-info">
+            <form class="gift-input">
+              <input type="text" class="gift-name" placeholder="Item Name" required>
+              <input type="text" class="gift-link" placeholder="Item Link">
+              <input type="text" class="gift-price" placeholder="Price">
+              <button type="submit" class="gift-submit">Add Gift</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
     <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="gifts.js"></script>
   </body>

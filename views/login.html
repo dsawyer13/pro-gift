@@ -6,23 +6,38 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="login">
-      <form class="login-form">
-        <fieldset>
-          <legend>Log In</legend>
-          <div class="error-message"></div>
-          <label for="username">Username</label>
-          <input type="text" class="username" name="username" placeholder="Enter Username" required>
+    <main>
+      <nav>
+        <div class="logo">ProGift</div>
+      </nav>
+      <section class="content">
+        <div class="landing-info">
+          <h1>All-in-one Gift Registry Service</h1>
+          <ul>
+            <li>Eleminate the hassle of multiple gift registries.</li>
+            <li>ProGift keeps all your gifts in one place.</li>
+            <li>Perfect for Weddings, Baby Showers, and Holidays!</li>
+          </ul>
+          <img class="gifts" src="./giftimage.png">
+        </div>
+        <div class="forms">
+          <form class="login-form">
+            <fieldset>
+              <legend>Log In</legend>
+              <div class="error-message"></div>
+              <label for="username">Username</label>
+              <input type="text" class="username" name="username" placeholder="Enter Username" required>
 
-          <label for="password">Password</label>
-          <input type="password" class="password" name="password" placeholder="Enter Password" required>
+              <label for="password">Password</label>
+              <input type="password" class="password" name="password" placeholder="Enter Password" required>
 
-          <button type="submit" class="login-submit">Log In</button>
-        </fieldset>
-      </form>
-      <p class="haveAccount">Don't have an account? <a href="javascript:void(0);" class="access-register">Register</a></p>
+              <button type="submit" class="login-submit">Log In</button>
+            </fieldset>
+          </form>
+          <p class="haveAccount">Don't have an account? <a href="javascript:void(0);" class="access-register">Register</a></p>
+      </div>
       <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
       <script src="client.js"></script>
-    </div>
+
   </body>
 </html>
