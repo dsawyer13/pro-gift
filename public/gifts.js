@@ -3,13 +3,16 @@ const giftItemTemplate =
      '<div class="hyperlink"></div>' +
      '<div class="price"></div>' +
      '<div class="buttons">' +
-     '<button class="delete-button" type="button">Delete</button>' +
+     '<a href="#" class="delete-button" type="button">delete</a>' +
      '</div>' +
      '</li>';
 
 
 const username = localStorage.getItem('username');
 const token = localStorage.getItem('token');
+
+const fullName = localStorage.getItem('fullName');
+$('.fullname').text(fullName);
 
 function getAndDisplayGiftList() {
   console.log('Retrieving gift list');
@@ -20,7 +23,7 @@ function getAndDisplayGiftList() {
       let element = $(giftItemTemplate);
       element.attr('id', item.id);
       let itemName = element.find('.hyperlink');
-      itemName.append(`<a href=${item.giftLink}>${item.giftName}</a>`);
+      itemName.append(`<a href='${item.giftLink}' target='_blank'>${item.giftName}</a>`);
       let itemPrice = element.find('.price');
       itemPrice.text(item.giftPrice)
       return element
@@ -60,25 +63,30 @@ function deleteGiftItem(itemId) {
 }
 
 function handleGiftAdd() {
-  $('.gift-input').submit(function(e) {
+  $('.gift-submit').click(function(e) {
     e.preventDefault();
+
     let giftLink = $('.gift-link').val();
-    const prefix = 'http://';
-    if (giftLink.substr(0, prefix.length) !== prefix) {
+    const prefix = 'https://';
+    const prefix2 = 'http://';
+    if (giftLink.substr(0, prefix.length) !== prefix && giftLink.substr(0, prefix2.length) !== prefix2 ) {
       giftLink = prefix + giftLink
       console.log(giftLink)
       addGiftItem({
         giftName: $('.gift-name').val(),
         giftLink: giftLink,
-        giftPrice: $('.gift-price').val()
+        giftPrice: '$' + $('.gift-price').val()
       });
     } else {
     addGiftItem({
       giftName: $('.gift-name').val(),
       giftLink: $('.gift-link').val(),
-      giftPrice: $('.gift-price').val()
+      giftPrice: '$' + $('.gift-price').val()
     });
   };
+  $('.gift-name').val('');
+  $('.gift-link').val('');
+  $('.gift-price').val('');
 })}
 
 function handleGiftDelete() {
@@ -121,6 +129,11 @@ function logoutUser() {
   })
 }
 
+function goHome() {
+  $('.logo').click(function(){
+    window.location.href = '/home';
+  })
+}
 
 $(function() {
   getAndDisplayGiftList();
@@ -128,4 +141,5 @@ $(function() {
   handleGiftDelete();
   searchUser();
   logoutUser();
+  goHome();
 })

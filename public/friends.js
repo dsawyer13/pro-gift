@@ -2,9 +2,8 @@ const giftItemTemplate =
      '<li class="gift-item">' +
        '<div class="hyperlink"></div>' +
        '<div class="price"></div>' +
-       '<div class="purchaseItemDiv">' +
        '<div class="buttons">' +
-       '<button class="checkGift">Purchase this</button>' +
+       '<button class="purchase">purchase</button>' +
        '</div>' +
        '</div>' +
      '</li>';
@@ -14,8 +13,8 @@ const parsedFriendGift = JSON.parse(friendGift);
 const friendUsername = parsedFriendGift[0].username;
 const token = localStorage.getItem('token');
 
-//used to add purchased by 'fullName'
 const fullName = localStorage.getItem('fullName');
+$('.fullname').text(fullName);
 
 function getAndDisplayFullName() {
   $.ajax({
@@ -39,16 +38,16 @@ function displayFriendGiftList() {
       element.attr('id', item.id);
 
       let itemName = element.find('.hyperlink');
-      itemName.append(`<a href=${item.giftLink}>${item.giftName}</a>`)
+      itemName.append(`<a class="checkGift" href=${item.giftLink}>${item.giftName}</a>`)
 
       let itemPrice = element.find('.price');
       itemPrice.text(item.giftPrice)
       element.attr('purchased', item.purchased);
 
       if(item.purchased) {
-        itemName.addClass('purchasedGift');
-        let itemPurchased = element.find('.purchaseItemDiv');
-        itemPurchased.append(`Purchased by ${fullName}`)
+        let hyperlink = element.find('.checkGift');
+        hyperlink.addClass('purchasedGift');
+        itemName.append(`<i class="item-purchased">Purchased by ${fullName}</i>`);
       }
 
 
@@ -60,7 +59,7 @@ function displayFriendGiftList() {
 
 
 function handlePurchaseGift() {
-  $('.gift-list').on('click', '.checkGift', function(e) {
+  $('.gift-list').on('click', '.purchase', function(e) {
     e.preventDefault();
     let element = $(e.currentTarget).closest('.gift-item');
 
@@ -80,6 +79,9 @@ function updatePurchaseStatus(item) {
   $.ajax({
     method: 'PUT',
     url: `/api/gifts/${item.id}`,
+    headers: {
+      'Authorization': `Bearer ${token}`
+    },
     data: JSON.stringify(item),
     success: function(data) {
       displayFriendGiftList();
@@ -107,7 +109,7 @@ function addGiftItem(item) {
 }
 
 function handleGiftAdd() {
-  $('.gift-input').submit(function(e) {
+  $('.gift-submit').click(function(e) {
     e.preventDefault();
 
     addGiftItem({
@@ -118,10 +120,26 @@ function handleGiftAdd() {
   });
 }
 
+function logoutUser() {
+  $('.logout').click(function(e) {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  })
+}
+
+function goHome() {
+  $('.logo').click(function(){
+    window.location.href = '/home';
+  })
+}
+
 
 $(function() {
   getAndDisplayFullName();
   displayFriendGiftList();
   handlePurchaseGift();
   handleGiftAdd();
+  goHome();
+  logoutUser();
 })

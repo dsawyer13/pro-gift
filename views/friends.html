@@ -3,26 +3,46 @@
   <head>
     <meta charset="utf-8">
     <title>ProGift</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="gifts.css">
+    <link rel="stylesheet" href="normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Pacifico|Roboto" rel="stylesheet">
   </head>
   <body>
-    <h1 class="display-name"></h1>
-    <form class="search-users">
-      <input type="text" class="username" placeholder="Search by username">
-      <button type="submit" class="submit-user-search">Submit</button>
-    </form>
-    <div class="list-container">
-      <ul class="gift-list"></ul>
-      <div class="gift-info">
-        <form class="gift-input">
-          <input type="text" class="gift-name" placeholder="Item Name" required>
-          <input type="text" class="gift-link" placeholder="Item Link">
-          <input type="text" class="gift-price" placeholder="Price">
-          <button type="submit" class="gift-submit">Add Gift</button>
-        </form>
-      </div>
-    </div>
+    <main>
+      <nav>
+        <div class="logo">ProGift</div>
+      </nav>
+      <section class="content">
+        <div class="side-bar">
+          <div class="side-bar-content">
+            <img class="profile-pic" src="./profilepic.png">
+            <h1 class="fullname"></h1>
+            <a href='#' class="logout">Log out</a>
+            <form class="search-users">
+              <input type="text" class="username" placeholder="Search by username">
+              <button type="submit" class="submit-user-search">submit</button>
+            </form>
+          </div>
+        </div>
+      <div class="list-container">
+        <div class="list-content">
+          <h1 class="display-name"></h1>
+          <div class="gift-info">
+            <ul class="gift-list"></ul>
+            <form class="gift-input">
+              <input type="text" class="gift-name" placeholder="Item Name" required>
+              <span class="price-box">
+                <span class="money">$</span>
+                <input type="text" class="gift-price" required>
+              </span>
+              <input type="text" class="gift-link" placeholder="Item Link" required>
 
+              <a href="#" class="gift-submit">submit</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
     <script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="friends.js"></script>
   </body>
