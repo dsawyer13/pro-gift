@@ -102,6 +102,7 @@ function goToRegister() {
   })
 }
 
+//validated user by checking if an empty response sent back
 function verifyExistingUser() {
   $('.login-form').submit('.login-submit', function(e) {
     e.preventDefault();
@@ -145,6 +146,7 @@ function existingUserLogin() {
    }
  //}
 
+//if there is a token set in localStorage, verify it is valid
  function checkKey() {
    if(jwtToken) {
      $.ajax({
@@ -180,10 +182,8 @@ function getRefreshToken(jwtToken) {
 
 $(function() {
   createAccount();
-  //existingUserLogin();
   goToLogin();
   goToRegister();
   checkKey();
   verifyExistingUser();
-  //sendRegisteredUserToLogin();
 });

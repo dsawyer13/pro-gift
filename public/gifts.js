@@ -14,6 +14,7 @@ const token = localStorage.getItem('token');
 const fullName = localStorage.getItem('fullName');
 $('.fullname').text(fullName);
 
+
 function getAndDisplayGiftList() {
   console.log('Retrieving gift list');
 
@@ -61,7 +62,7 @@ function deleteGiftItem(itemId) {
     success: getAndDisplayGiftList
   });
 }
-
+//add gift to database, ensure that the link is http or https, if not add it
 function handleGiftAdd() {
   $('.gift-submit').click(function(e) {
     e.preventDefault();
@@ -100,7 +101,7 @@ function handleGiftDelete() {
   });
 }
 
-
+//when using search bar, get the gift list for that user and set it in localstorage to be displayed on the next page
 function searchUser() {
   $('.search-users').submit(function(e) {
     e.preventDefault();
@@ -121,6 +122,7 @@ function searchUser() {
   })
 }
 
+//remove key from localStorage and redirect to login page
 function logoutUser() {
   $('.logout').click(function(e) {
     e.preventDefault();

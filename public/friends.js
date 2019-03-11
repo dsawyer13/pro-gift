@@ -45,6 +45,7 @@ function displayFriendGiftList() {
       element.attr('purchased', item.purchased);
 
       if(item.purchased) {
+        //if purchased value is true, strike through hyperlink and append who it was purchased by
         let hyperlink = element.find('.checkGift');
         hyperlink.addClass('purchasedGift');
         itemName.append(`<i class="item-purchased">Purchased by ${fullName}</i>`);
@@ -74,7 +75,7 @@ function handlePurchaseGift() {
   });
 }
 
-
+//if user clicks purchase, update the purchased value to true
 function updatePurchaseStatus(item) {
   $.ajax({
     method: 'PUT',
