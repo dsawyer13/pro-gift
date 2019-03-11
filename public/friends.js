@@ -100,7 +100,7 @@ function addGiftItem(item) {
     },
     data: JSON.stringify(item),
     success: function(data) {
-      
+
       displayFriendGiftList();
     },
     dataType: 'json',
@@ -118,6 +118,42 @@ function handleGiftAdd() {
       giftPrice: $('.gift-price').val()
     });
   });
+}
+
+function verifyExistingUser() {
+  $('.search-users').submit(function(e) {
+    e.preventDefault();
+    const username = $('.username').val()
+    $.ajax({
+      method: 'GET',
+      url: `/api/users/verify/${username}`,
+      success: function(data) {
+        if(data === null) {
+          $('.error-message').text('Incorrect username or password')
+        } else {
+          searchUser()
+        }
+      }
+    })
+  })
+}
+
+function searchUser() {
+    const username = $('.username').val();
+    $.ajax({
+      method: 'GET',
+      url: `/api/gifts/${username}`,
+      success: function(data) {
+        window.location.href = '/friend';
+        localStorage.setItem('friendGifts', JSON.stringify(data));
+      },
+      error: function(err) {
+        console.log(err);
+      },
+      dataType: 'json',
+      contentType: 'application/json'
+    })
+  })
 }
 
 function logoutUser() {
@@ -140,6 +176,7 @@ $(function() {
   displayFriendGiftList();
   handlePurchaseGift();
   handleGiftAdd();
+  verifyExistingUser();
   goHome();
   logoutUser();
 })

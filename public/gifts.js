@@ -100,15 +100,30 @@ function handleGiftDelete() {
   });
 }
 
-function searchUser() {
+function verifyExistingUser() {
   $('.search-users').submit(function(e) {
     e.preventDefault();
+    const username = $('.username').val()
+    $.ajax({
+      method: 'GET',
+      url: `/api/users/verify/${username}`,
+      success: function(data) {
+        if(data === null) {
+          $('.error-message').text('Incorrect username or password')
+        } else {
+          searchUser()
+        }
+      }
+    })
+  })
+}
+
+function searchUser() {
     const username = $('.username').val();
     $.ajax({
       method: 'GET',
       url: `/api/gifts/${username}`,
       success: function(data) {
-      
         window.location.href = '/friend';
         localStorage.setItem('friendGifts', JSON.stringify(data));
       },
@@ -139,7 +154,7 @@ $(function() {
   getAndDisplayGiftList();
   handleGiftAdd();
   handleGiftDelete();
-  searchUser();
+  verifyExistingUser();
   logoutUser();
   goHome();
 })
