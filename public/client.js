@@ -24,7 +24,7 @@ function createAccount() {
       url: '/api/users',
       data: JSON.stringify(formData),
       success: function(data) {
-        console.log(data)
+
         const fullName = data.firstName + ' ' + data.lastName;
         localStorage.setItem('fullName', fullName);
 
@@ -68,7 +68,7 @@ function getToken(loginData) {
 //use token to access protected endpoint
 function authenticateUser(token) {
     const username = localStorage.getItem('username');
-    console.log(username)
+
     $.ajax({
       method: 'GET',
 
@@ -77,7 +77,7 @@ function authenticateUser(token) {
          'Authorization': `Bearer ${jwtToken}`
        },
       success: function(data) {
-        console.log(data);
+
         window.location.href = '/home';
         localStorage.setItem('gifts', JSON.stringify(data));
       },
@@ -132,7 +132,7 @@ function existingUserLogin() {
        method: 'GET',
        url: `/api/users/${username}`,
        success: function(data) {
-         console.log(data)
+
          const fullName = data[0].firstName + " " + data[0].lastName;
          localStorage.setItem("fullName", fullName)
          localStorage.setItem("username", data[0].username)

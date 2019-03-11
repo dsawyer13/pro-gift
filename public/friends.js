@@ -21,7 +21,7 @@ function getAndDisplayFullName() {
     method: 'GET',
     url: `/api/users/${friendUsername}`,
     success: function(data) {
-      console.log(data);
+
       const fullName = data[0].firstName + " " + data[0].lastName;
       $('.display-name').text(`${fullName}\'s list`);
     }
@@ -100,7 +100,7 @@ function addGiftItem(item) {
     },
     data: JSON.stringify(item),
     success: function(data) {
-      console.log(data)
+      
       displayFriendGiftList();
     },
     dataType: 'json',

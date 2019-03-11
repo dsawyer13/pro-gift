@@ -2,26 +2,30 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ProGift</title>
     <link rel="stylesheet" href="gifts.css">
     <link rel="stylesheet" href="normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Pacifico|Roboto" rel="stylesheet">
   </head>
   <body>
-    <main>
-      <nav>
+    <main role="main">
+      <nav role="navigation">
         <div class="logo">ProGift</div>
       </nav>
-      <section class="content">
+      <section class="content" role="region">
         <div class="side-bar">
           <div class="side-bar-content">
             <img class="profile-pic" src="./profilepic.png">
-            <h1 class="fullname"></h1>
-            <a href='#' class="logout">Log out</a>
-            <form class="search-users">
-              <input type="text" class="username" placeholder="Search by username">
-              <button type="submit" class="submit-user-search">submit</button>
-            </form>
+            <span class="side-bar-text">
+              <h1 class="fullname"></h1>
+              <a href='#' class="logout">Log out</a>
+              <form class="search-users" role="form">
+                <input type="text" class="username" placeholder="Search by username">
+                <button type="submit" class="submit-user-search">submit</button>
+              </form>
+            </span>
           </div>
         </div>
       <div class="list-container">
@@ -29,7 +33,7 @@
           <h1 class="display-name"></h1>
           <div class="gift-info">
             <ul class="gift-list"></ul>
-            <form class="gift-input">
+            <form class="gift-input" role="form">
               <input type="text" class="gift-name" placeholder="Item Name" required>
               <span class="price-box">
                 <span class="money">$</span>

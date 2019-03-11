@@ -43,7 +43,7 @@ function addGiftItem(item) {
     },
     data: JSON.stringify(item),
     success: function(data) {
-      console.log(data)
+
       getAndDisplayGiftList();
     },
     dataType: 'json',
@@ -71,7 +71,7 @@ function handleGiftAdd() {
     const prefix2 = 'http://';
     if (giftLink.substr(0, prefix.length) !== prefix && giftLink.substr(0, prefix2.length) !== prefix2 ) {
       giftLink = prefix + giftLink
-      console.log(giftLink)
+
       addGiftItem({
         giftName: $('.gift-name').val(),
         giftLink: giftLink,
@@ -108,7 +108,7 @@ function searchUser() {
       method: 'GET',
       url: `/api/gifts/${username}`,
       success: function(data) {
-        console.log(data)
+      
         window.location.href = '/friend';
         localStorage.setItem('friendGifts', JSON.stringify(data));
       },

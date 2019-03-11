@@ -25,8 +25,13 @@ body {
 }
 
 nav {
+  width: 100%;
   background-color: #21355A;
-  height: 70px;
+  height: 65px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 nav .logo
@@ -156,4 +161,43 @@ fieldset {
   width: 60%;
   display: block;
   margin: 0 auto;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 480px) {
+  .content {
+    display: grid;
+    margin: 50px 0 0 0;
+    grid-template-columns: auto;
+    grid-template-rows: 30% 70%;
+    grid-template-areas:
+    "landing-info"
+    "signup-form"
+  }
+
+  nav .logo {
+    text-align: center;
+    margin: 0;
+
+  }
+
+  .landing-info {
+    margin: 0 auto;
+  }
+
+  .landing-info h1 {
+    margin-top: 30px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .landing-info ul {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .login-form {
+    margin-top: 30px;
+  }
+
+
 }

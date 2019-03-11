@@ -9,15 +9,10 @@ body {
   color: #F4EDE6;
 }
 
-.logo {
-  padding-top: 3px;
-  font-family: 'Pacifico', cursive;
-}
-
 .content {
   height: 100vh;
   width: 100vw;
-  margin-top: 3%;
+  margin-top: 8%;
   display: grid;
   grid-template-columns: 300px auto;
   grid-template-rows: 400px auto;
@@ -27,21 +22,28 @@ body {
 }
 
 nav {
+  width: 100%;
   background-color: #21355A;
   height: 65px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 nav .logo
 {
-  font-size: 40px;
   margin-left: 5%;
+  padding-top: 3px;
+  font-family: 'Pacifico', cursive;
+  font-size: 40px;
   text-shadow: 2px 2px #1B2121;
   cursor: pointer;
 }
 
 .profile-pic {
   border-radius: 50%;
-  width: 30%;
+  width: 40%;
   margin-top: 20px;
   border: 2px solid #1B2121;
 }
@@ -58,6 +60,7 @@ nav .logo
   padding: 10px 5px 10px 5px;
   border: 1px solid #C0C0C0;
   width: 80%;
+  height: 80%;
   margin-left: 5%;
 }
 
@@ -236,7 +239,7 @@ ul {
 }
 
 .search-users {
-  margin-top: 15%;
+  margin-top: 30%;
 }
 
 .purchasedGift {
@@ -248,5 +251,93 @@ ul {
 }
 
 .fullname {
-  font-size: 20px;
+  font-size: 24px;
+}
+
+
+@media only screen and (min-width: 300px) and (max-width: 480px) {
+  .content {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20% 80%;
+    grid-template-areas:
+    "side-bar"
+    "list-container"
+
+  }
+
+  nav .logo {
+    text-align: center;
+    margin: 0;
+
+  }
+
+  .content {
+    margin-top: 80px;
+  }
+
+  .side-bar-content {
+    width: 95%;
+    padding: 0;
+    margin: 0 auto;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+    "profile-pic side-bar-text"
+  }
+
+  .profile-pic {
+    width: 50%;
+    margin: 20px auto;
+
+  }
+
+  .fullname {
+    margin: 0;
+  }
+
+  .search-users {
+    margin: 0;
+  }
+
+  .list-content {
+    margin: 0 auto;
+    width: 95%;
+  }
+
+  .side-bar-text {
+    margin: 5px 5px 0 0;
+  }
+
+  .search-users {
+    margin-top: 5px;
+  }
+
+  .gift-price {
+    width: 19%;
+  }
+
+  .gift-submit {
+    width: 23%;
+    margin-left: 2px;
+    padding: 6px 20px;
+  }
+
+  .item-purchased {
+    float: none;
+    font-size: 12px;
+  }
+
+  .purchase {
+    font-size: 12px;
+  }
+
+  .gift-item {
+    margin-bottom: 5px;
+  }
+
 }
