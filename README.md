@@ -24,4 +24,6 @@ be redirected to their home page on next visit.
 *MongoDB
 
 ## Screenshots
-
+![Landing Page](https://imgur.com/U8s506X "Landing Page")
+![Home Page](https://imgur.com/4ACnoxc "Home Page")
+![Friend's Page](https://imgur.com/vMz4xq2 "Friend's Page")
