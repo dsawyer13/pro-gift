@@ -100,25 +100,10 @@ function handleGiftDelete() {
   });
 }
 
-function verifyExistingUser() {
-  $('.search-users').submit(function(e) {
-    e.preventDefault();
-    const username = $('.username').val()
-    $.ajax({
-      method: 'GET',
-      url: `/api/users/verify/${username}`,
-      success: function(data) {
-        if(data === null) {
-          $('.error-message').text('Incorrect username or password')
-        } else {
-          searchUser()
-        }
-      }
-    })
-  })
-}
 
 function searchUser() {
+  $('.search-users').submit(function(e) {
+    e.preventDefault();
     const username = $('.username').val();
     $.ajax({
       method: 'GET',
@@ -154,7 +139,7 @@ $(function() {
   getAndDisplayGiftList();
   handleGiftAdd();
   handleGiftDelete();
-  verifyExistingUser();
+  searchUser();
   logoutUser();
   goHome();
 })
