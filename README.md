@@ -3,7 +3,7 @@ An application that allows users to make an account to view friend's gift regist
 Users are able to link to gifts from any website in one place.
 
 ## Live App
-https://powerful-mountain-84317.herokuapp.com/
+https://progift.herokuapp.com/
 
 ## Summary
   Beginning at the landing page, a user sees a registration form.  The form is used to create a new account for creating and
@@ -16,12 +16,12 @@ once logged in, and it will return them to the landing page, with a login form. 
 be redirected to their home page on next visit.
 
 ## Built With
-*HTML
-*CSS
-*JavaScript
-*jQuery
-*Node.JS
-*MongoDB
+* HTML
+* CSS
+* JavaScript
+* jQuery
+* Node.JS
+* MongoDB
 
 ## Screenshots
 ![Landing Page](https://imgur.com/U8s506X.png "Landing Page")
