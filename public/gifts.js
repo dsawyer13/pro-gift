@@ -8,6 +8,9 @@ const giftItemTemplate =
      '</li>';
 
 
+console.log(document.location)
+console.log(document.location.search)
+
 const username = localStorage.getItem('username');
 const token = localStorage.getItem('token');
 
@@ -101,26 +104,28 @@ function handleGiftDelete() {
   });
 }
 
-//when using search bar, get the gift list for that user and set it in localstorage to be displayed on the next page
-function searchUser() {
+function validateAndSearchUser() {
   $('.search-users').submit(function(e) {
     e.preventDefault();
     const username = $('.username').val();
     $.ajax({
       method: 'GET',
       url: `/api/gifts/${username}`,
-      success: function(data) {
-        window.location.href = '/friend';
-        localStorage.setItem('friendGifts', JSON.stringify(data));
-      },
-      error: function(err) {
-        console.log(err);
-      },
       dataType: 'json',
-      contentType: 'application/json'
+      contentType: 'application/json',
+      success: function(data) {
+        if(data.length == 0) {
+          $('.username').val('');
+          $('.error-message').text('Invalid User');
+        } else {
+          window.location.href = `/friend`;
+          localStorage.setItem('friendGifts', JSON.stringify(data));
+        }
+      }
     })
   })
 }
+
 
 //remove key from localStorage and redirect to login page
 function logoutUser() {
@@ -134,14 +139,17 @@ function logoutUser() {
 function goHome() {
   $('.logo').click(function(){
     window.location.href = '/home';
-  })
+  });
+  $('.profile-pic').click(function() {
+    window.location.href = '/home';
+  });
 }
 
 $(function() {
   getAndDisplayGiftList();
   handleGiftAdd();
   handleGiftDelete();
-  searchUser();
   logoutUser();
   goHome();
+  validateAndSearchUser();
 })

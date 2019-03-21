@@ -27,6 +27,7 @@
                 <input type="text" class="username" placeholder="Search by username">
                 <button type="submit" class="submit-user-search">submit</button>
               </form>
+              <span class="error-message"></span>
             </span>
           </div>
         </div>
@@ -39,11 +40,13 @@
                 <input type="text" class="gift-name" placeholder="Item Name" required>
                 <span class="price-box">
                   <span class="money">$</span>
-                  <input type="text" class="gift-price" required>
+                  <input type="number" class="gift-price"
+                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                   maxlength="5" required>
                 </span>
                 <input type="text" class="gift-link" placeholder="Item Link" required>
 
-                <a href="#" class="gift-submit">submit</a>
+                <button class="gift-submit">submit</button>
               </form>
             </div>
           </div>

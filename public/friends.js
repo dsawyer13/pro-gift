@@ -8,6 +8,9 @@ const giftItemTemplate =
        '</div>' +
      '</li>';
 
+
+
+
 const friendGift = localStorage.getItem('friendGifts');
 const parsedFriendGift = JSON.parse(friendGift);
 const friendUsername = parsedFriendGift[0].username;
@@ -113,34 +116,63 @@ function handleGiftAdd() {
   $('.gift-submit').click(function(e) {
     e.preventDefault();
 
+    let giftLink = $('.gift-link').val();
+    const prefix = 'https://';
+    const prefix2 = 'http://';
+    if (giftLink.substr(0, prefix.length) !== prefix && giftLink.substr(0, prefix2.length) !== prefix2 ) {
+      giftLink = prefix + giftLink
+
+      addGiftItem({
+        giftName: $('.gift-name').val(),
+        giftLink: giftLink,
+        giftPrice: '$' + $('.gift-price').val()
+      });
+    } else {
     addGiftItem({
       giftName: $('.gift-name').val(),
       giftLink: $('.gift-link').val(),
-      giftPrice: $('.gift-price').val()
+      giftPrice: '$' + $('.gift-price').val()
     });
-  });
-}
+  };
+  $('.gift-name').val('');
+  $('.gift-link').val('');
+  $('.gift-price').val('');
+})}
 
 
-function searchUser() {
+function validateAndSearchUser() {
   $('.search-users').submit(function(e) {
     e.preventDefault();
     const username = $('.username').val();
     $.ajax({
       method: 'GET',
       url: `/api/gifts/${username}`,
-      success: function(data) {
-        window.location.href = '/friend';
-        localStorage.setItem('friendGifts', JSON.stringify(data));
-      },
-      error: function(err) {
-        console.log(err);
-      },
       dataType: 'json',
-      contentType: 'application/json'
-    })
-  })
+      contentType: 'application/json',
+      success: function(data) {
+        if(data.length == 0) {
+          $('.username').val('');
+          $('.error-message').text('Invalid User');
+        } else {
+          window.location.href = '/friend';
+          localStorage.setItem('friendGifts', JSON.stringify(data));
+        }
+      }
+    });
+  });
 }
+
+// function insertParam(key, value) {
+//   key = escape(key); value = escape(value);
+//
+//   const kvp = document.location.search.substr(1).split('&');
+//   if (kvp == '') {
+//     document.location.search = '?' + key + '=' + value;
+//   } else {
+//
+//   }
+// }
+
 
 
 function logoutUser() {
@@ -148,13 +180,16 @@ function logoutUser() {
     e.preventDefault();
     localStorage.removeItem('token');
     window.location.href = '/login';
-  })
+  });
 }
 
 function goHome() {
   $('.logo').click(function(){
     window.location.href = '/home';
   })
+  $('.profile-pic').click(function() {
+    window.location.href = '/home';
+  });
 }
 
 
@@ -163,7 +198,7 @@ $(function() {
   displayFriendGiftList();
   handlePurchaseGift();
   handleGiftAdd();
-  searchUser();
+  validateAndSearchUser();
   goHome();
   logoutUser();
 })
