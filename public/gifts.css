@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   background-color: #295195;
@@ -10,9 +15,9 @@ body {
 }
 
 .content {
-  height: 100vh;
-  width: 100vw;
-  margin-top: 8%;
+  height: 80vh;
+  width: 90vw;
+  margin-top: 6%;
   display: grid;
   grid-template-columns: 300px auto;
   grid-template-rows: 400px auto;
@@ -75,7 +80,7 @@ nav .logo
   border: 1px solid #C0C0C0;
   border-radius: 5px;
   padding: 10px 25px;
-  margin-right: 200px;
+  margin-right: 80px;
   margin-left: 100px;
 }
 
@@ -262,6 +267,99 @@ ul {
   color: red;
   font-size: 15px;
   margin-bottom: 10px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .content {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 10% 90%;
+    grid-template-areas:
+    "side-bar"
+    "list-container"
+
+  }
+
+  nav .logo {
+    text-align: center;
+    margin: 0;
+    font-size: 60px;
+  }
+
+  nav {
+    height: 93px;
+  }
+
+  .content {
+    margin-top: 110px;
+  }
+
+  .side-bar-content {
+    width: 95%;
+    padding: 0;
+    margin: 0 auto;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+    "profile-pic side-bar-text"
+  }
+
+  .profile-pic {
+    width: 45%;
+    margin: 5px 0 0 20px;
+
+  }
+
+  .fullname {
+    margin: 0;
+  }
+
+  .search-users {
+    margin: 0;
+  }
+
+  .list-content {
+    margin: 0 auto;
+    margin-top: 0px;
+    width: 95%;
+  }
+
+  .side-bar-text {
+    margin: 5px 5px 0 0;
+  }
+
+  .search-users {
+    margin-top: 5px;
+  }
+
+  .gift-price {
+    width: 19%;
+  }
+
+  .gift-submit {
+    width: 23%;
+    margin-left: 2px;
+    padding: 6px 20px;
+  }
+
+  .item-purchased {
+    float: none;
+    font-size: 12px;
+  }
+
+  .purchase {
+    font-size: 12px;
+  }
+
+  .gift-item {
+    margin-bottom: 5px;
+  }
+
+
 }
 
 

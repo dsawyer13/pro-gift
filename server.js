@@ -43,7 +43,7 @@ app.get("/login", (req, res) => {
 });
 
 
-app.get("/friend/", (req, res) => {
+app.get("/friend", (req, res) => {
   res.sendFile(__dirname + "/public/views/friends.html")
 });
 
