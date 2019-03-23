@@ -14,6 +14,10 @@ body {
   color: #F4EDE6;
 }
 
+.hidden {
+  display: none;
+}
+
 .content {
   height: 80vh;
   width: 90vw;
@@ -71,7 +75,8 @@ nav .logo
 
 .list-container {
   grid-area: list-container;
-
+  min-width: 0;
+  overflow: hidden;
 }
 
 .list-content {
@@ -82,6 +87,8 @@ nav .logo
   padding: 10px 25px;
   margin-right: 80px;
   margin-left: 100px;
+  min-width: 0;
+  overflow: hidden;
 }
 
  li {
@@ -269,15 +276,16 @@ ul {
   margin-bottom: 10px;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 480px) and (max-width: 1024px) {
   .content {
     height: 100vh;
     width: 100vw;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 10% 5% 85%;
     grid-template-areas:
     "side-bar"
+    "."
     "list-container"
 
   }
@@ -300,6 +308,7 @@ ul {
     width: 95%;
     padding: 0;
     margin: 0 auto;
+    margin-bottom: 50px;
     height: 100px;
     display: grid;
     grid-template-columns: 20% 80%;

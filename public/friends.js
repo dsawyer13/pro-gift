@@ -1,3 +1,4 @@
+
 const giftItemTemplate =
      '<li class="gift-item">' +
        '<div class="hyperlink"></div>' +
@@ -52,7 +53,6 @@ function displayFriendGiftList() {
         let hyperlink = element.find('.checkGift');
         hyperlink.addClass('purchasedGift');
         itemName.append(`<i class="item-purchased">Purchased by ${fullName}</i>`);
-        $('.purchase').text('cancel purchase')
       }
 
 
@@ -89,9 +89,7 @@ function updatePurchaseStatus(item) {
     },
     data: JSON.stringify(item),
     success: function(data) {
-
       displayFriendGiftList();
-
     },
     dataType: 'json',
     contentType: 'application/json'
