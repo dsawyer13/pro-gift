@@ -4,7 +4,6 @@ const giftItemTemplate =
        '<div class="hyperlink"></div>' +
        '<div class="price"></div>' +
        '<div class="buttons">' +
-       '<button class="purchase">purchase</button>' +
        '</div>' +
        '</div>' +
      '</li>';
@@ -53,6 +52,11 @@ function displayFriendGiftList() {
         let hyperlink = element.find('.checkGift');
         hyperlink.addClass('purchasedGift');
         itemName.append(`<i class="item-purchased">Purchased by ${fullName}</i>`);
+        let buttons = element.find('.buttons');
+        buttons.html(`<button class="purchase">cancel</button>`)
+      } else {
+        let buttons = element.find('.buttons');
+        buttons.html(`<button class="purchase">purchase</button>`)
       }
 
 
@@ -61,6 +65,7 @@ function displayFriendGiftList() {
     $('.gift-list').html(itemElements)
   });
 }
+
 
 
 function handlePurchaseGift() {
