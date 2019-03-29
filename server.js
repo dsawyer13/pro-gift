@@ -30,7 +30,7 @@ const jwtAuth = passport.authenticate('jwt', {session: false});
 
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/views/index.html");
+    res.sendFile(__dirname + "/public/views/login.html");
 });
 
 //doesnt work because after get request is authorized, the window.location.href is still unauthorized
@@ -38,8 +38,8 @@ app.get("/home", (req, res) => {
   res.sendFile(__dirname + "/public/views/gifts.html")
 });
 
-app.get("/login", (req, res) => {
-  res.sendFile(__dirname + "/public/views/login.html")
+app.get("/register", (req, res) => {
+  res.sendFile(__dirname + "/public/views/index.html")
 });
 
 

@@ -185,7 +185,7 @@ function logoutUser() {
   $('.logout').click(function(e) {
     e.preventDefault();
     localStorage.removeItem('token');
-    window.location.href = '/login';
+    window.location.href = '/';
   });
 }
 

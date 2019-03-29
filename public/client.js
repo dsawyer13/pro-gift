@@ -92,13 +92,13 @@ function authenticateUser(token) {
 
 function goToLogin() {
   $('.access-login').click(function() {
-    window.location.href = '/login';
+    window.location.href = '/';
   })
 }
 
 function goToRegister() {
   $('.access-register').click(function() {
-    window.location.href = '/';
+    window.location.href = '/register';
   })
 }
 
