@@ -2,12 +2,14 @@
   box-sizing: border-box;
 }
 
+html {
+  background-image: linear-gradient( 180.3deg,  rgba(10,86,199,1) 23.7%, rgba(61,166,255,1) 101.5% );
+  background-size: cover;
+}
 
 html, body {
   width: 100%;
   min-height: 100%;
-  background-image: linear-gradient( 180.3deg,  rgba(10,86,199,1) 23.7%, rgba(61,166,255,1) 101.5% );
-  background-size: cover;
 }
 
 body {
