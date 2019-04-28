@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+
 html, body {
   width: 100%;
   min-height: 100%;
@@ -30,7 +31,17 @@ body {
   "side-bar list-container"
   ". list-container";
 }
+a {
+  color: #6BC71F;
+}
 
+a:hover {
+  color: #539B14;
+}
+
+a:visited {
+  color: #348BEC;
+}
 nav {
   width: 100%;
   background-color: rgb(27, 33, 39,0.8);

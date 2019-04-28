@@ -10,7 +10,6 @@ html {
 
 body {
   margin: 0;
-
   font-family: 'Montserrat', sans-serif;
   color: #F4EDE6;
 }
@@ -27,7 +26,7 @@ a:hover {
 }
 
 a:visited {
-  color: #993AE8;
+  color: #348BEC;
 }
 
 .error-message {
