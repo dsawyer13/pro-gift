@@ -83,6 +83,7 @@ describe('Gift Registry API resource', function() {
         })
 
         .then(function(res) {
+
           res.should.have.status(200);
           res.should.be.json;
           res.body.should.be.a('array');
@@ -122,6 +123,8 @@ describe('Gift Registry API resource', function() {
             .send(newGift)
         })
         .then(function(res) {
+          console.log("1", newGift)
+          console.log("2", res.body)
           res.should.have.status(201);
           res.should.be.json;
           res.body.should.be.a('object');

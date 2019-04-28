@@ -2,11 +2,32 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  background-image: linear-gradient( 180.3deg,  rgba(10,86,199,1) 23.7%, rgba(61,166,255,1) 101.5% );
+  background-size: cover;
+}
+
 body {
   margin: 0;
-  background-color: #295195;
+
   font-family: 'Montserrat', sans-serif;
   color: #F4EDE6;
+}
+
+.forms {
+  margin-top: 50px;
+}
+a {
+  color: #6BC71F;
+}
+
+a:hover {
+  color: #539B14;
+}
+
+a:visited {
+  color: #993AE8;
 }
 
 .error-message {
@@ -22,7 +43,7 @@ body {
 .content {
   width: auto;
   height: auto;
-  margin: 100px 10% 0 0;
+  margin: 100px 10% 0 5%;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto;
@@ -31,19 +52,20 @@ body {
 
 nav {
   width: 100%;
-  background-color: #21355A;
+  background-color: rgb(27, 33, 39,0.8);
   height: 65px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  -webkit-box-shadow: 0 8px 6px -6px, black;
+  -moz-box-shadow: 0 8px 6px -6px, black;
+  box-shadow: 0 8px 6px -6px, black;
 }
 
-nav .logo
-{
+nav .logo {
   font-size: 40px;
   margin-left: 5%;
-  text-shadow: 2px 2px #1B2121;
 }
 
 label {
@@ -62,6 +84,7 @@ fieldset {
 .landing-info {
   grid-area: landing-info;
   margin: 0 auto;
+  margin-top: 70px;
 }
 
 .landing-info h1 {
@@ -229,7 +252,7 @@ fieldset {
   }
 
   .landing-info {
-    /* margin: 0 auto; */
+    margin: 0 10px;
   }
 
   .landing-info h1 {
@@ -238,16 +261,15 @@ fieldset {
     text-align: center;
   }
 
-  /* .landing-info ul {
-    font-size: 14px;
-    width: 100%; */
-  }
-
   .signup-form {
-    margin-top: 100px;
+    margin-top: 15px;
   }
 
   .login-form {
-    margin-top: 120px;
+    margin-top: 40px;
+  }
+
+  .giftPic {
+    display: none;
   }
 }

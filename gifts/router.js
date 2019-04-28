@@ -59,7 +59,7 @@ router.delete("/:id", jwtAuth, (req, res) => {
   Gift
     .findByIdAndRemove(req.params.id)
     .then(() => {
-      console.log(`Deleted blog post with id \`${req.params.id}\``);
+      console.log(`Deleted \`${req.params.id}\``);
       res.status(204).end()
     })
     .catch(err => {
@@ -70,7 +70,7 @@ router.delete("/:id", jwtAuth, (req, res) => {
 
 
 router.put("/:id", jwtAuth, (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
    if(!(req.params.id && req.body.id && req.params.id === req.body.id)) {
      console.log(req.params.id);
      console.log(req.body.id);
