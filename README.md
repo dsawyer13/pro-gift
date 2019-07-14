@@ -11,7 +11,7 @@ viewing gift registries.  Once registred the user can add gifts to their page by
 has the ability to delete unwanted gifts from their page.  The home page also contains a search bar that allows users to search for gift registries
 by username.  
   When viewing someone else's page, the user can click 'purchase' next to each gift to let others know the gift
-has been purchased.  They also have the ability to add gift recommendations to the page.  The user has the abilty to click 'logout'
+has been purchased.  They also have the ability to add gift recommendations to the page.  The user has the ability to click 'logout'
 once logged in, and it will return them to the landing page, with a login form.  If the user chooses not to logout, they will automatically
 be redirected to their home page on next visit.
 
