@@ -10,9 +10,6 @@ https://progift.herokuapp.com/
 
 ![Home Page](https://imgur.com/bUnV9k5.png "Home Page")
 
-## Features
-* Create Gift Lists
-
 ## Built With
 * HTML
 * CSS
